@@ -12,13 +12,13 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	swap(t_list *stack)
+void	push(t_list *to, t_list **from)
 {
-
+	t_list	*temp;
+	if (!(*from))
+		return ;
+	temp = (*from)->next;
+	ft_lstadd_front(&to, *from);
+	*from = temp;
 }
 
-void	swap_twin(t_list *as, t_list *bs)
-{
-	swap(as);
-	swap(bs);
-}
