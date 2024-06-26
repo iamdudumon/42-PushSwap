@@ -12,7 +12,26 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	push(t_list *to, t_list *from)
+void	reverse_rotate(t_list *stack)
 {
+    t_list  *ptr;
+	int		*temp1;
+	int		*temp2;
 
+    ptr = stack;
+	temp1 = ptr->content;
+	while (ptr->next)
+	{
+		temp2 = ptr->next->content;
+		ptr->next->content = temp1;
+		temp1 = temp2;
+        ptr = ptr->next;
+	}
+    stack->content = temp1;
+}
+
+void    reverse_rotate_twin(t_list *as, t_list *bs)
+{
+    rotate(as);
+    rotate(bs);
 }
