@@ -24,4 +24,12 @@
 // 	struct s_list   *prev;
 // }					t_list;
 
+void	swap(t_list *stack);
+void	swap_twin(t_list *as, t_list *bs);
+void	push(t_list *to, t_list **from);
+void	rotate(t_list *stack);
+void	rotate_twin(t_list *as, t_list *bs);
+void	reverse_rotate(t_list *stack);
+void	reverse_rotate_twin(t_list *as, t_list *bs);
+
 #endif
