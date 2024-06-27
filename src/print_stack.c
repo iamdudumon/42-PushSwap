@@ -36,66 +36,55 @@ void    start_sorting(t_list *sa, t_list *sb)
 			swap(sa);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "sb", 2))
 		{
 			swap(sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "ss", 2))
 		{
 			swap_twin(sa, sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "pa", 2))
 		{
 			push(&sa, &sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "pb", 2))
 		{
 			push(&sb, &sa);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "ra", 2))
 		{
 			rotate(sa);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "rb", 2))
 		{
 			rotate(sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "rr", 3))
 		{
 			rotate_twin(sa, sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "rra", 3))
 		{
 			reverse_rotate(sa);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "rrb", 3))
 		{
 			reverse_rotate(sb);
 			continue ;
 		}
-			
 		if (!ft_strncmp(cmd, "rrr", 3))
 		{
 			reverse_rotate_twin(sa, sb);
 			continue;
 		}
-	
 	}
 }
