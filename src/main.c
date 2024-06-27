@@ -14,7 +14,48 @@
 
 #include <stdio.h>
 
-static t_list *str_to_stack(char **split)
+static int	is_dup_inset(int *set, int integer)
+{
+	static int	size;
+	int			i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (set[i] == integer)
+			return (1);
+		i++;
+	}
+	set[i] = integer;
+	size++;
+	return (0);
+}
+
+static t_list	*create_intnode(const char *s, int len)
+{
+	static int	*set;
+	t_list		*node;
+	int			*integer;
+	char		error;
+
+	if (!set)
+		set = (int *)malloc(sizeof(int) * len);
+	integer = (int *)malloc(sizeof(int) * 1);
+	if (!set || !integer)
+		return (0);
+	error = 0;
+	*integer = ft_atoi(s, &error);
+	if (is_dup_inset(set, *integer))
+		return (0);
+	if (error)
+		return (0);
+	node = ft_lstnew(integer);
+	if (!node)
+		return (0);
+	return (node);
+}
+
+static t_list	*str_to_stack(char **split)
 {
 	int		i;
 	int		len;
@@ -28,24 +69,31 @@ static t_list *str_to_stack(char **split)
 	i = 0;
 	while (i < len)
 	{
-		temp = (t_list *)malloc(sizeof(t_list) * 1);
+		temp = create_intnode(split[i], len);
 		if (!temp)
 			return (0);
-		temp->content = (int *)malloc(sizeof(int) * 1);
-		if (!(temp->content))
-			return (0);
-		*(int *)(temp->content) = ft_atoi(split[i]);
 		ft_lstadd_front(&stack, temp);
 		i++;
 	}
 	return (stack);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	char	**split;
 	t_list	*stack;
 
 	split = ft_split(argv[1], ' ');
 	stack = str_to_stack(split);
+	if (!stack)
+	{
+		printf("error\n");
+		return (0);
+	}
 }
+
+// while (stack)
+// {
+// 	printf("%d\n", *(int *)(stack->content));
+// 	stack = stack->next;
+// }
