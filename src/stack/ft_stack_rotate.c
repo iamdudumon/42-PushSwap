@@ -19,6 +19,8 @@ void	rotate(t_list *stack)
 	int		*temp1;
 	int		*temp2;
 
+	if (!stack)
+		return ;
 	last = ft_lstlast(stack);
     ptr = last;
 	temp1 = ptr->content;

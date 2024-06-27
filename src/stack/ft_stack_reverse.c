@@ -18,6 +18,8 @@ void	reverse_rotate(t_list *stack)
 	int		*temp1;
 	int		*temp2;
 
+	if (!stack)
+		return ;
     ptr = stack;
 	temp1 = ptr->content;
 	while (ptr->next)
@@ -32,6 +34,6 @@ void	reverse_rotate(t_list *stack)
 
 void    reverse_rotate_twin(t_list *as, t_list *bs)
 {
-    reverse_rotate(as);
+	reverse_rotate(as);
     reverse_rotate(bs);
 }
