@@ -12,8 +12,6 @@
 
 #include "../inc/ft_push_swap.h"
 
-#include <stdio.h>
-
 static int	is_dup_inset(int *set, int integer)
 {
 	static int	size;
@@ -81,16 +79,18 @@ static t_list	*str_to_stack(char **split)
 int	main(int argc, char *argv[])
 {
 	char	**split;
-	t_list	*stack;
+	t_list	*sa;
+	t_list	*sb;
 
 	split = ft_split(argv[1], ' ');
-	stack = str_to_stack(split);
-	if (!stack)
+	sa = str_to_stack(split);
+	sb = 0;
+	if (!sa)
 	{
 		printf("error\n");
 		return (0);
 	}
-
+	start_sorting(sa, sb);
 }
 
 // rotate(stack);
