@@ -12,13 +12,16 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	push(t_list *to, t_list **from)
+void	push(t_list **to, t_list **from)
 {
 	t_list	*temp;
+
 	if (!(*from))
 		return ;
 	temp = (*from)->next;
-	ft_lstadd_front(&to, *from);
+	ft_lstadd_front(to, *from);
 	*from = temp;
+	if (*from)
+		(*from)->prev = 0;
 }
 
