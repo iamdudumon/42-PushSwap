@@ -72,7 +72,7 @@ static t_list	*str_to_stack(char **split)
 		temp = create_intnode(split[i], len);
 		if (!temp)
 			return (0);
-		ft_lstadd_front(&stack, temp);
+		ft_lstadd_back(&stack, temp);
 		i++;
 	}
 	return (stack);
@@ -90,8 +90,11 @@ int	main(int argc, char *argv[])
 		printf("error\n");
 		return (0);
 	}
+
 }
 
+// rotate(stack);
+// //reverse_rotate(stack);
 // while (stack)
 // {
 // 	printf("%d\n", *(int *)(stack->content));
