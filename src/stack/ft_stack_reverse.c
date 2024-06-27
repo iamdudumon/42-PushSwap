@@ -32,6 +32,6 @@ void	reverse_rotate(t_list *stack)
 
 void    reverse_rotate_twin(t_list *as, t_list *bs)
 {
-    rotate(as);
-    rotate(bs);
+    reverse_rotate(as);
+    reverse_rotate(bs);
 }
