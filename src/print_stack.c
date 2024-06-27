@@ -21,7 +21,8 @@ static void    print_stack(t_list *sa, t_list *sb)
 
 void    start_sorting(t_list *sa, t_list *sb)
 {
-    char	cmd[4];
+    int		cnt = 0;
+	char	cmd[4];
 	
 	cmd[0] = ' ';
 	cmd[1] = '\0';
@@ -31,6 +32,7 @@ void    start_sorting(t_list *sa, t_list *sb)
 		scanf("%s", cmd);
 		if (!ft_strncmp(cmd, "q!", 2))
 			break ;
+		cnt++;
 		if (!ft_strncmp(cmd, "sa", 2))
 		{
 			swap(sa);
@@ -87,4 +89,5 @@ void    start_sorting(t_list *sa, t_list *sb)
 			continue;
 		}
 	}
+	printf("\ncnt: %d\n", cnt);
 }
