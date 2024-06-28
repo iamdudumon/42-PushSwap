@@ -12,8 +12,6 @@
 
 #include "../inc/ft_push_swap.h"
 
-#include <stdio.h>
-
 static int	is_dup_inset(int *set, int integer)
 {
 	static int	size;
@@ -31,66 +29,75 @@ static int	is_dup_inset(int *set, int integer)
 	return (0);
 }
 
-static t_list	*create_intnode(const char *s, int len)
+static t_list	*create_intnode(char *s, int len, int *set)
 {
-	static int	*set;
 	t_list		*node;
 	int			*integer;
 	char		error;
 
-	if (!set)
-		set = (int *)malloc(sizeof(int) * len);
 	integer = (int *)malloc(sizeof(int) * 1);
-	if (!set || !integer)
+	if (!integer)
 		return (0);
 	error = 0;
 	*integer = ft_atoi(s, &error);
-	if (is_dup_inset(set, *integer))
+	if (error || is_dup_inset(set, *integer))
+	{
+		free(integer);
 		return (0);
-	if (error)
-		return (0);
+	}
 	node = ft_lstnew(integer);
-	if (!node)
-		return (0);
 	return (node);
 }
 
-static t_list	*str_to_stack(char **split)
+static t_list	*str_to_stack(char **split, int len)
 {
 	int		i;
-	int		len;
-	t_list	*temp;
+	int		*set;
+	t_list	*node;
 	t_list	*stack;
 
-	len = 0;
-	while (split[len])
-		len++;
 	stack = 0;
 	i = 0;
+	set = (int *)malloc(sizeof(int) * len);
+	if (!set)
+		return (0);
 	while (i < len)
 	{
-		temp = create_intnode(split[i], len);
-		if (!temp)
+		node = create_intnode(split[i], len, set);
+		if (!node)
+		{
+			free_stack(stack, 0);
+			free(set);
 			return (0);
-		ft_lstadd_back(&stack, temp);
+		}
+		ft_lstadd_back(&stack, node);
 		i++;
 	}
+	free(set);
 	return (stack);
 }
 
 int	main(int argc, char *argv[])
 {
 	char	**split;
-	t_list	*stack;
+	int		len;
+	t_list	*sa;
+	t_list	*sb;
 
 	split = ft_split(argv[1], ' ');
-	stack = str_to_stack(split);
-	if (!stack)
+	len = 0;
+	while (split[len])
+		len++;
+	sa = str_to_stack(split, len);
+	sb = 0;
+	free_split_str(split);
+	if (!sa)
 	{
-		printf("error\n");
+		ft_putstr_fd("Error\n", 1);
 		return (0);
 	}
-
+	push_swap(sa, sb, len);
+	free_stack(sa, sb);
 }
 
 // rotate(stack);
