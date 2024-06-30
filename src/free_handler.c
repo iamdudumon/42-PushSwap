@@ -17,7 +17,7 @@ void	free_split_str(char **split)
 	char	**temp;
 
 	temp = split;
-	while(*split)
+	while (*split)
 	{
 		free(*split);
 		split++;
@@ -25,8 +25,8 @@ void	free_split_str(char **split)
 	free(temp);
 }
 
-void    free_stack(t_list *sa, t_list *sb)
+void	free_stack(t_list *sa, t_list *sb)
 {
-    ft_lstclear(&sa, free);
-    ft_lstclear(&sb, free);
+	ft_lstclear(&sa, free);
+	ft_lstclear(&sb, free);
 }
