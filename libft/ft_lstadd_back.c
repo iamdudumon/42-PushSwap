@@ -14,17 +14,16 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	static t_list	*tail;
+	t_list	*tail;
 
 	if (!(*lst))
 	{
 		*lst = new;
-		tail = *lst;
 		return ;
 	}
 	if (!lst || !new)
 		return ;
+	tail = ft_lstlast(*lst);
 	tail->next = new;
-	tail->next->prev = tail;
-	tail = tail->next;
+	new->prev = tail;
 }
