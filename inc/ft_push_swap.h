@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP
-# define FT_PUSH_SWAP
+#ifndef FT_PUSH_SWAP_H
+# define FT_PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -34,10 +34,11 @@ void	rotate_twin(t_list *as, t_list *bs);
 void	reverse_rotate(t_list *stack);
 void	reverse_rotate_twin(t_list *as, t_list *bs);
 
-void    start_sorting(t_list *sa, t_list *sb);
+int 	exec_commands(t_list *sa, t_list *sb);
 void	free_split_str(char **split);
-void    free_stack(t_list *sa, t_list *sb);
+void	free_stack(t_list *sa, t_list *sb);
 
+int     is_sorted(t_list *sa);
 void	push_swap(t_list *sa, t_list *sb, int size);
 
 #endif

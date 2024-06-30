@@ -96,8 +96,15 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\n", 1);
 		return (0);
 	}
-	start_sorting(sa, sb);
-	push_swap(sa, sb, len);
+	if (!exec_commands(sa, sb))
+	{
+		if (is_sorted(sa) && !sb)
+			ft_putstr_fd("OK\n", 1);
+		else
+			ft_putstr_fd("KO\n", 1);
+	}
+	else
+		ft_putstr_fd("Error\n", 1);
 	free_stack(sa, sb);
 }
 

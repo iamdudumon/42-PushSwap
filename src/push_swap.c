@@ -12,7 +12,7 @@
 
 #include "../inc/ft_push_swap.h"
 
-static int	is_sorted(t_list *sa)
+int	is_sorted(t_list *sa)
 {
 	t_list  *ptr;
 	int		prev_content;
