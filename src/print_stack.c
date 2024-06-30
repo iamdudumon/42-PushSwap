@@ -22,14 +22,12 @@ static void    print_stack(t_list *sa, t_list *sb)
 void    start_sorting(t_list *sa, t_list *sb)
 {
     int		cnt = 0;
-	char	cmd[4];
+	char	*cmd;
 	
-	cmd[0] = ' ';
-	cmd[1] = '\0';
 	while (1)
 	{
 		print_stack(sa, sb);
-		scanf("%s", cmd);
+		cmd = get_next_line(1);
 		if (!ft_strncmp(cmd, "q!", 2))
 			break ;
 		cnt++;
@@ -88,6 +86,7 @@ void    start_sorting(t_list *sa, t_list *sb)
 			reverse_rotate_twin(sa, sb);
 			continue;
 		}
+		free(cmd);
 	}
 	printf("\ncnt: %d\n", cnt);
 }

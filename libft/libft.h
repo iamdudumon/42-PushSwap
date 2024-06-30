@@ -16,12 +16,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 	struct s_list   *prev;
 }					t_list;
+
+typedef struct s_gnl_list
+{
+	int					fd;
+	char				*backup;
+	struct s_gnl_list	*next;
+	struct s_gnl_list	*prev;
+}						t_gnl_list;
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -73,5 +85,12 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, \
 							void *(*f)(void *), void (*del)(void *));
+
+char			*get_next_line(int fd);
+char			*ft_gnl_get_chridx(const char *s, int c);
+char			*ft_gnl_strjoin(char *s1, char *s2, char end);
+t_gnl_list		*ft_gnl_lstnew(int fd);
+void			ft_gnl_lstadd_back(t_gnl_list **lst, t_gnl_list *new);
+void			ft_gnl_del_node(t_gnl_list **list, t_gnl_list *node);
 
 #endif
