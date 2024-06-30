@@ -35,5 +35,9 @@ void	reverse_rotate(t_list *stack);
 void	reverse_rotate_twin(t_list *as, t_list *bs);
 
 void    start_sorting(t_list *sa, t_list *sb);
+void	free_split_str(char **split);
+void    free_stack(t_list *sa, t_list *sb);
+
+void	push_swap(t_list *sa, t_list *sb, int size);
 
 #endif
