@@ -15,23 +15,23 @@
 void	rotate(t_list *stack)
 {
 	t_list	*last;
-    t_list  *ptr;
+	t_list	*ptr;
 	int		*temp1;
 	int		*temp2;
 
 	if (!stack)
 		return ;
 	last = ft_lstlast(stack);
-    ptr = last;
+	ptr = last;
 	temp1 = ptr->content;
 	while (ptr->prev)
 	{
 		temp2 = ptr->prev->content;
 		ptr->prev->content = temp1;
 		temp1 = temp2;
-        ptr = ptr->prev;
+		ptr = ptr->prev;
 	}
-    last->content = temp1;
+	last->content = temp1;
 }
 
 void	rotate_twin(t_list *as, t_list *bs)

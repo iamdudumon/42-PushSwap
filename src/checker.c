@@ -14,7 +14,7 @@
 
 static int	is_sorted(t_list *sa)
 {
-	t_list  *ptr;
+	t_list	*ptr;
 
 	ptr = sa;
 	while (ptr->next)
@@ -77,5 +77,3 @@ void	check_sorted(t_list **sa, t_list **sb)
 	else
 		ft_putstr_fd("KO\n", 1);
 }
-
-

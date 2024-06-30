@@ -14,26 +14,26 @@
 
 void	reverse_rotate(t_list *stack)
 {
-    t_list  *ptr;
+	t_list	*ptr;
 	int		*temp1;
 	int		*temp2;
 
 	if (!stack)
 		return ;
-    ptr = stack;
+	ptr = stack;
 	temp1 = ptr->content;
 	while (ptr->next)
 	{
 		temp2 = ptr->next->content;
 		ptr->next->content = temp1;
 		temp1 = temp2;
-        ptr = ptr->next;
+		ptr = ptr->next;
 	}
-    stack->content = temp1;
+	stack->content = temp1;
 }
 
-void    reverse_rotate_twin(t_list *as, t_list *bs)
+void	reverse_rotate_twin(t_list *as, t_list *bs)
 {
 	reverse_rotate(as);
-    reverse_rotate(bs);
+	reverse_rotate(bs);
 }

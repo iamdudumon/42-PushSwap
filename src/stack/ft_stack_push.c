@@ -24,4 +24,3 @@ void	push(t_list **to, t_list **from)
 	if (*from)
 		(*from)->prev = 0;
 }
-
