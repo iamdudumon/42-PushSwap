@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
-# include <stdio.h>
-
 void	swap(t_list *stack);
 void	swap_twin(t_list *as, t_list *bs);
 void	push(t_list **to, t_list **from);
@@ -30,8 +28,8 @@ void	reverse_rotate_twin(t_list *as, t_list *bs);
 void	free_split_str(char **split);
 void	free_stack(t_list *sa, t_list *sb);
 
-void	print_stack(t_list *sa, t_list *sb);
-
 void	check_sorted(t_list **sa, t_list **sb);
+
+void	print_stack(t_list *sa, t_list *sb);
 
 #endif

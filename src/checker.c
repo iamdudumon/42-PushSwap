@@ -52,6 +52,7 @@ static int	exec_command(t_list **sa, t_list **sb, char *cmd)
 		reverse_rotate_twin(*sa, *sb);
 	else
 		return (1);
+	print_stack(*sa, *sb);	
 	return (0);
 }
 
@@ -59,6 +60,7 @@ void	check_sorted(t_list **sa, t_list **sb)
 {
 	char	*cmd;
 
+	print_stack(*sa, *sb);
 	while (1)
 	{
 		cmd = get_next_line(1);
