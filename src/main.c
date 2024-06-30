@@ -96,7 +96,7 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\n", 1);
 		return (0);
 	}
-	push_swap(sa, sb, len);
+	push_swap(&sa, &sb, len);
 	free_stack(sa, sb);
 }
 

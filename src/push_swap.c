@@ -14,21 +14,19 @@
 
 static int	is_sorted(t_list *sa)
 {
-	t_list  *ptr;
-	int		prev_content;
+	t_list	*ptr;
 
-	ptr = sa->next;
-	prev_content = *(int *)(sa->content);
+	ptr = sa;
 	while (ptr->next)
 	{
-		if (*(int *)(sa->content) < prev_content)
+		if (*(int *)(ptr->content) > *(int *)(ptr->next->content))
 			return (0);
 		ptr = ptr->next;
 	}
 	return (1);
 }
 
-void	push_swap(t_list *sa, t_list *sb, int size)
+void	push_swap(t_list **sa, t_list **sb, int size)
 {
 
 }
