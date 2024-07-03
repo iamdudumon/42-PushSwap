@@ -12,18 +12,18 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	swap(t_list *stack)
+void	swap(t_deque *stack)
 {
 	int	*temp;
 
-	if (!stack || !stack->next)
+	if (!stack->header || !stack->header->next)
 		return ;
-	temp = stack->content;
-	stack->content = stack->next->content;
-	stack->next->content = temp;
+	temp = stack->header->content;
+	stack->header->content = stack->header->next->content;
+	stack->header->next->content = temp;
 }
 
-void	swap_twin(t_list *as, t_list *bs)
+void	swap_twin(t_deque *as, t_deque *bs)
 {
 	swap(as);
 	swap(bs);

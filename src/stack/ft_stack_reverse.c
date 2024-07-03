@@ -12,15 +12,15 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	reverse_rotate(t_list *stack)
+void	reverse_rotate(t_deque *stack)
 {
 	t_list	*ptr;
 	int		*temp1;
 	int		*temp2;
 
-	if (!stack)
+	if (!stack->header)
 		return ;
-	ptr = stack;
+	ptr = stack->header;
 	temp1 = ptr->content;
 	while (ptr->next)
 	{
@@ -29,10 +29,10 @@ void	reverse_rotate(t_list *stack)
 		temp1 = temp2;
 		ptr = ptr->next;
 	}
-	stack->content = temp1;
+	stack->header->content = temp1;
 }
 
-void	reverse_rotate_twin(t_list *as, t_list *bs)
+void	reverse_rotate_twin(t_deque *as, t_deque *bs)
 {
 	reverse_rotate(as);
 	reverse_rotate(bs);

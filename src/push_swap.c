@@ -12,11 +12,11 @@
 
 #include "../inc/ft_push_swap.h"
 
-static int	is_sorted(t_list *sa)
+static int	is_sorted(t_deque *sa)
 {
 	t_list	*ptr;
 
-	ptr = sa;
+	ptr = sa->header;
 	while (ptr->next)
 	{
 		if (*(int *)(ptr->content) > *(int *)(ptr->next->content))
@@ -26,7 +26,7 @@ static int	is_sorted(t_list *sa)
 	return (1);
 }
 
-void	push_swap(t_list **sa, t_list **sb, int size)
+void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
 
 }

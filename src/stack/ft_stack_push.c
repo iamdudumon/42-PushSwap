@@ -12,15 +12,21 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	push(t_list **to, t_list **from)
+void	push(t_deque *to, t_deque *from)
 {
 	t_list	*temp;
 
-	if (!(*from))
+	if (!(from->header))
 		return ;
-	temp = (*from)->next;
-	ft_lstadd_front(to, *from);
-	*from = temp;
-	if (*from)
-		(*from)->prev = 0;
+	temp = from->header->next;
+	ft_lstadd_front(&(to->header), from->header);
+	from->header = temp;
+	if (!from->header)
+	{
+		from->tail = 0;
+		return ;
+	}
+	from->header->prev = 0;
+	if (!from->header->next)
+		from->tail = from->header;
 }

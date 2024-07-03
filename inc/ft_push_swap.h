@@ -17,17 +17,23 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
-void	swap(t_list *stack);
-void	swap_twin(t_list *as, t_list *bs);
-void	push(t_list **to, t_list **from);
-void	rotate(t_list *stack);
-void	rotate_twin(t_list *as, t_list *bs);
-void	reverse_rotate(t_list *stack);
-void	reverse_rotate_twin(t_list *as, t_list *bs);
+typedef struct s_deque
+{
+	t_list	*header;
+	t_list	*tail;
+}			t_deque;
+
+void	swap(t_deque *stack);
+void	swap_twin(t_deque *as, t_deque *bs);
+void	push(t_deque *to, t_deque *from);
+void	rotate(t_deque *stack);
+void	rotate_twin(t_deque *as, t_deque *bs);
+void	reverse_rotate(t_deque *stack);
+void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 
 void	free_split_str(char **split);
-void	free_stack(t_list *sa, t_list *sb);
+void	free_stack(t_deque *sa, t_deque *sb);
 
-void	push_swap(t_list **sa, t_list **sb, int size);
+void	push_swap(t_deque *sa, t_deque *sb, int size);
 
 #endif

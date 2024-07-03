@@ -25,8 +25,12 @@ void	free_split_str(char **split)
 	free(temp);
 }
 
-void	free_stack(t_list *sa, t_list *sb)
+void	free_stack(t_deque *sa, t_deque *sb)
 {
-	ft_lstclear(&sa, free);
-	ft_lstclear(&sb, free);
+	ft_lstclear(&(sa->header), free);
+	if (sb)
+		ft_lstclear(&(sb->header), free);
+	free(sa);
+	if (sb)
+		free(sb);
 }

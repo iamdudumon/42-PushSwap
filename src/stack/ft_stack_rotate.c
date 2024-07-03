@@ -12,16 +12,16 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	rotate(t_list *stack)
+void	rotate(t_deque *stack)
 {
 	t_list	*last;
 	t_list	*ptr;
 	int		*temp1;
 	int		*temp2;
 
-	if (!stack)
+	if (!stack->header)
 		return ;
-	last = ft_lstlast(stack);
+	last = stack->tail;
 	ptr = last;
 	temp1 = ptr->content;
 	while (ptr->prev)
@@ -34,7 +34,7 @@ void	rotate(t_list *stack)
 	last->content = temp1;
 }
 
-void	rotate_twin(t_list *as, t_list *bs)
+void	rotate_twin(t_deque *as, t_deque *bs)
 {
 	rotate(as);
 	rotate(bs);
