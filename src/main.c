@@ -84,7 +84,9 @@ static t_deque	*str_to_stack(char **split, int len, int *error)
 			break ;
 		}
 		ft_lstadd_back(&(stack->header), node);
+		// ft_lstadd_back(&(stack->header), &(stack->tail), node);
 	}
+	stack->tail = node;
 	free(set);
 	return (stack);
 }
