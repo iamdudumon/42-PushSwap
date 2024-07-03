@@ -12,7 +12,7 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	swap(t_deque *stack)
+void	swap(t_deque *stack, char *cmd)
 {
 	int	*temp;
 
@@ -21,10 +21,13 @@ void	swap(t_deque *stack)
 	temp = stack->header->content;
 	stack->header->content = stack->header->next->content;
 	stack->header->next->content = temp;
+	if (*cmd != '\0')
+		ft_putstr_fd(cmd, 1);
 }
 
 void	swap_twin(t_deque *as, t_deque *bs)
 {
-	swap(as);
-	swap(bs);
+	swap(as, "");
+	swap(bs, "");
+	ft_putstr_fd("ss\n", 1);
 }

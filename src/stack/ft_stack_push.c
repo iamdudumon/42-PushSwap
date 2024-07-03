@@ -12,7 +12,7 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	push(t_deque *to, t_deque *from)
+void	push(t_deque *to, t_deque *from, char *cmd)
 {
 	t_list	*temp;
 
@@ -29,4 +29,6 @@ void	push(t_deque *to, t_deque *from)
 	from->header->prev = 0;
 	if (!from->header->next)
 		from->tail = from->header;
+	if (*cmd != '\0')
+		ft_putstr_fd(cmd, 1);
 }
