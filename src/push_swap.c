@@ -77,7 +77,7 @@ static void	merge_sb_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 			c3--;
 		}
 	}
-	if ((is_max + 1) % 3 == 0)
+	if (is_max % 3 == 2)
 		return ;
 	while (ori_size--)
 		rotate(sb, "rb\n");
@@ -115,8 +115,7 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 			c3--;
 		}
 	}
-	// printf("is_max: %d\n", is_max);
-	if ((is_max + 1) % 3 == 0)
+	if (is_max % 3 == 2)
 		return ;
 	while (ori_size--)
 		rotate(sa, "ra\n");
@@ -136,14 +135,13 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts)
 	ori_size = size / 3;
 	depth = get_depth(size);
 	cnt = cnts[depth - 1];
-	if (!cnt)
+	if (cnt == depth % 2)
 		ori_size = 0;
 	while (ori_size)
 	{
 		rotate_twin(sa, sb);
 		ori_size--;
-	}
-	printf("cnt: %d\n", cnt);
+	} 
 	if ((cnt + depth - 1) % 2 == 0)
 		merge_sb_triangle(sa, sb, size, cnt);
 	else
@@ -154,7 +152,6 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts)
 void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
 	int	i;
-	int	is_max;
 	int	*cnts;
 	int	depth;
 
@@ -163,6 +160,8 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 		push(sb, sa, "pb\n");
 	depth = get_depth(size);
 	cnts = (int *)malloc(sizeof(int) * depth);
-	ft_memset(cnts, 0, sizeof(int) * depth);
+	i = -1;
+	while (++i < depth)
+		cnts[i] = (i + depth) % 2;
 	merge_sort(sa, sb, size, cnts);
 }
