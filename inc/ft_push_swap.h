@@ -34,7 +34,8 @@ void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);
 
-t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max);
+t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max, int c1, int c2, int c3);
+int		get_depth(int size);
 
 void	push_swap(t_deque *sa, t_deque *sb, int size);
 
