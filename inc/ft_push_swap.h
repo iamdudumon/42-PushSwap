@@ -17,17 +17,32 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
-void	swap(t_list *stack);
-void	swap_twin(t_list *as, t_list *bs);
-void	push(t_list **to, t_list **from);
-void	rotate(t_list *stack);
-void	rotate_twin(t_list *as, t_list *bs);
-void	reverse_rotate(t_list *stack);
-void	reverse_rotate_twin(t_list *as, t_list *bs);
+typedef struct s_deque
+{
+	t_list	*header;
+	t_list	*tail;
+}			t_deque;
+
+typedef struct s_layer
+{
+	char	is_a;
+	int		cnt;
+}			t_layer;
+
+void	swap(t_deque *stack, char *cmd);
+void	swap_twin(t_deque *as, t_deque *bs);
+void	push(t_deque *to, t_deque *from, char *cmd);
+void	rotate(t_deque *stack, char *cmd);
+void	rotate_twin(t_deque *as, t_deque *bs);
+void	reverse_rotate(t_deque *stack, char *cmd);
+void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 
 void	free_split_str(char **split);
-void	free_stack(t_list *sa, t_list *sb);
+void	free_stack(t_deque *sa, t_deque *sb);
 
-void	push_swap(t_list **sa, t_list **sb, int size);
+t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max, int c1, int c2, int c3);
+int		get_depth(int size);
+
+void	push_swap(t_deque *sa, t_deque *sb, int size);
 
 #endif

@@ -49,29 +49,42 @@ static t_list	*create_intnode(char *s, int len, int *set)
 	return (node);
 }
 
-static t_list	*str_to_stack(char **split, int len)
+static t_deque	*init_stack(void)
+{
+	t_deque	*stack;
+
+	stack = (t_deque *)malloc(sizeof(t_deque) * 1);
+	if (!stack)
+		return (0);
+	stack->header = 0;
+	stack->tail = 0;
+	return (stack);
+}
+
+static t_deque	*str_to_stack(char **split, int len, int *error)
 {
 	int		i;
 	int		*set;
 	t_list	*node;
-	t_list	*stack;
+	t_deque	*stack;
 
-	stack = 0;
-	i = 0;
+	stack = init_stack();
+	if (!stack)
+		return (0);
+	i = -1;
 	set = (int *)malloc(sizeof(int) * len);
 	if (!set)
 		return (0);
-	while (i < len)
+	while (++i < len)
 	{
 		node = create_intnode(split[i], len, set);
 		if (!node)
 		{
-			free_stack(stack, 0);
-			free(set);
-			return (0);
+			*error = 1;
+			break ;
 		}
-		ft_lstadd_back(&stack, node);
-		i++;
+		ft_lstadd_back(&(stack->header), node);
+		stack->tail = node;
 	}
 	free(set);
 	return (stack);
@@ -81,22 +94,25 @@ int	main(int argc, char *argv[])
 {
 	char	**split;
 	int		len;
-	t_list	*sa;
-	t_list	*sb;
+	int		error;
+	t_deque	*sa;
+	t_deque	*sb;
 
 	split = ft_split(argv[1], ' ');
 	len = 0;
+	error = 0;
 	while (split[len])
 		len++;
-	sa = str_to_stack(split, len);
-	sb = 0;
+	sa = str_to_stack(split, len, &error);
+	sb = str_to_stack(0, 0, &error);
 	free_split_str(split);
-	if (!sa)
+	if (error)
 	{
 		ft_putstr_fd("Error\n", 1);
+		free_stack(sa, sb);
 		return (0);
 	}
-	push_swap(&sa, &sb, len);
+	push_swap(sa, sb, len);
 	free_stack(sa, sb);
 }
 
