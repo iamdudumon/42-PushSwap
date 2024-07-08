@@ -36,9 +36,9 @@ void	rotate(t_deque *stack, char *cmd)
 		ft_putstr_fd(cmd, 1);
 }
 
-void	rotate_twin(t_deque *as, t_deque *bs)
+void	rotate_twin(t_deque *sa, t_deque *sb)
 {
-	rotate(as, "");
-	rotate(bs, "");
+	rotate(sa, "");
+	rotate(sb, "");
 	ft_putstr_fd("rr\n", 1);
 }
