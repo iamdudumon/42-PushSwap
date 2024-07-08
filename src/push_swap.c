@@ -57,7 +57,6 @@ static void	merge_sb_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	c3 = size / 3;
 	while (c1 || c2 || c3)
 	{
-		// print_stack(sa->header, sb->header);
 		node = get_node3(sa->header, sa->tail, sb->tail, is_max, c1, c2, c3);
 		if (node == sa->header && c1)
 		{
@@ -90,7 +89,6 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	c3 = size / 3;
 	while (c1 || c2 || c3)
 	{
-		// print_stack(sa->header, sb->header);
 		node = get_node3(sa->tail, sb->header, sb->tail, is_max, c1, c2, c3);
 		if (node == sa->tail && c1)
 		{

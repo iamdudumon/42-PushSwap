@@ -19,7 +19,6 @@ static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, int c1
 		v3 = -2147483648;
 	else
 		v3 = *((int *)(node3->content));
-	// printf("max: %d, %d, %d\n", v1, v2, v3);
 	if (v2 < v1 && v1 > v3)
 		return (node1);
 	if (v1 < v2 && v2 > v3)
@@ -45,7 +44,6 @@ static t_list	*get_min_node3(t_list *node1, t_list *node2, t_list *node3, int c1
 		v3 = 2147483647;
 	else
 		v3 = *((int *)(node3->content));
-	// printf("min: %d, %d, %d\n", v1, v2, v3);
 	if (v2 > v1 && v1 < v3)
 		return (node1);
 	if (v1 > v2 && v2 < v3)
