@@ -23,6 +23,12 @@ typedef struct s_deque
 	t_list	*tail;
 }			t_deque;
 
+typedef struct s_layer
+{
+	char	is_a;
+	int		cnt;
+}			t_layer;
+
 void	swap(t_deque *stack, char *cmd);
 void	swap_twin(t_deque *as, t_deque *bs);
 void	push(t_deque *to, t_deque *from, char *cmd);
