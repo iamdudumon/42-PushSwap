@@ -52,7 +52,7 @@ static void	merge_sb_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	int		c2;
 	int		c3;
 
-	c1 = size / 3;
+	c1 = size - (2 *(size / 3));
 	c2 = size / 3;
 	c3 = size / 3;
 	while (c1 || c2 || c3)
@@ -85,7 +85,7 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	int		c3;
 
 	c1 = size / 3;
-	c2 = size / 3;
+	c2 = size - (2 *(size / 3));
 	c3 = size / 3;
 	while (c1 || c2 || c3)
 	{
@@ -115,28 +115,39 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_layer *layers, int 
 	char	is_a;
 	int		cnt;
 
-	if (size <= 2)
-		return ;
-	merge_sort(sa, sb, size / 3, layers, is_max);
-	merge_sort(sa, sb, size / 3, layers, is_max);
-	merge_sort(sa, sb, size / 3, layers, is_max == 0);
 	depth = get_depth(size);
 	is_a = layers[depth - 1].is_a;
+	if (size == 1)
+	{
+		
+		return ;
+	}
+	if (size == 2)
+	{
+		if (is_a && is_swap(sa, is_max == 0))
+			swap(sa, "sa\n");
+		if (!is_a && is_swap(sb, is_max == 0))
+			swap(sb, "sb\n");
+		return ;
+	}
+	merge_sort(sa, sb, size - (2 *(size / 3)), layers, is_max);
+	merge_sort(sa, sb, size / 3, layers, is_max);
+	merge_sort(sa, sb, size / 3, layers, is_max == 0);
 	cnt = layers[depth - 1].cnt++;
 	if ((is_a + cnt) % 2)
 		merge_sa_triangle(sa, sb, size, is_max);
 	else
 		merge_sb_triangle(sa, sb, size, is_max);
-	if (cnt % 3 == 2)
-		return ;
-	while (size--)
-	{
-		if ((is_a + cnt) % 2)
-			rotate(sa, "ra\n");
-		else
-			rotate(sb, "rb\n");
-	}
-	rotate_twin(sa, sb);
+	// if (cnt % 3 == 2)
+	// 	return ;
+	// while (size--)
+	// {
+	// 	if ((is_a + cnt) % 2)
+	// 		rotate(sa, "ra\n");
+	// 	else
+	// 		rotate(sb, "rb\n");
+	// }
+	// rotate_twin(sa, sb);
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
@@ -146,8 +157,8 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 	t_layer	*layers;
 
 	i = -1;
-	while (++i < size / 2)
-		push(sb, sa, "pb\n");
+	// while (++i < size / 2)
+	// 	push(sb, sa, "pb\n");
 	depth = get_depth(size);
 	layers = (t_layer *)malloc(sizeof(t_layer) * depth);
 	i = -1;
@@ -156,6 +167,8 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 		layers[i].is_a = (i + depth) % 2;
 		layers[i].cnt = 0;
 	}
+	// for (int i = 0 ; i < depth; i++)
+	// 	printf("%d ", layers[i].is_a);
 	merge_sort(sa, sb, size, layers, 1);
 	free(layers);
 }

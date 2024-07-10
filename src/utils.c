@@ -68,5 +68,23 @@ int		get_depth(int size)
 		size /= 3;
 		i++;
 	}
-	return (i - 1);
+	return (i);
+}
+
+int	is_swap(t_deque *stack, int is_max)
+{
+	int	head;
+	int	head_next;
+
+	head = *(int *)(stack->header->content);
+	head_next = *(int *)(stack->header->next->content);
+	if (is_max)
+	{
+		if (head_next < head)
+			return (1);
+		return (0);
+	}
+	if (head_next > head)
+		return (1);
+	return (0);
 }
