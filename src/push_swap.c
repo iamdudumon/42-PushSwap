@@ -67,8 +67,11 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 		node = get_node3(sb->tail, sa->tail, sb->header, is_max, ts);
 		if (node == sb->tail && ts.s1)
 		{
-			reverse_rotate(sb, "rrb\n");
-			push(sa, sb, "pa\n");
+			if (size >= 3)
+			{
+				reverse_rotate(sb, "rrb\n");
+				push(sa, sb, "pa\n");
+			}
 			ts.s1--;
 		}
 		if (node == sa->tail && ts.s2)
@@ -78,7 +81,8 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 		}
 		if (node == sb->header && ts.s3)
 		{
-			push(sa, sb, "pa\n");
+			if (size >= 3)
+				push(sa, sb, "pa\n");
 			ts.s3--;
 		}
 	}
@@ -129,9 +133,9 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 	int		depth;
 	int		*cnts;
 
-	i = -1;
-	while (++i < size / 2)
-		push(sb, sa, "pb\n");
+	// i = -1;
+	// while (++i < size / 2)
+	// 	push(sb, sa, "pb\n");
 	depth = get_depth(size);
 	cnts = (int *)malloc(sizeof(int) * (depth + 1));
 	// i = -1;
