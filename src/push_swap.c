@@ -119,8 +119,8 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int depth, int is_max
 
 	if (!cnts)
 	{
-		cnts = (int *)malloc(sizeof(int) * (10 + 1));
-		ft_memset(cnts, 0, sizeof(int) * (10 + 1));
+		cnts = (int *)malloc(sizeof(int) * (sa->len + 1));
+		ft_memset(cnts, 0, sizeof(int) * (sa->len + 1));
 	}
 	ts = cal_size3(size);
 	if (size >= 3)
@@ -146,5 +146,7 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int depth, int is_max
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
+	if (is_sorted(sa))
+		return ;
 	merge_sort(sa, sb, size, 0, 1);
 }
