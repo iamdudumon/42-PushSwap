@@ -32,7 +32,6 @@ static void	merge_sb_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	t_size	ts;
 
 	ts = cal_size3(size);
-	// printf("ts: %d %d %d\n", ts.s1, ts.s2, ts.s3);
 	while (ts.s1 || ts.s2 || ts.s3)
 	{
 		node = get_node3(sa->tail, sb->tail, sa->header, is_max, ts);
@@ -41,16 +40,19 @@ static void	merge_sb_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 			reverse_rotate(sa, "rra\n");
 			push(sb, sa, "pb\n");
 			ts.s1--;
+			continue ;
 		}
 		if (node == sb->tail && ts.s2)
 		{
 			reverse_rotate(sb, "rrb\n");
 			ts.s2--;
+			continue ;
 		}
 		if (node == sa->header && ts.s3)
 		{
 			push(sb, sa, "pb\n");
 			ts.s3--;
+			continue ;
 		}
 	}
 }
@@ -61,7 +63,6 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 	t_size	ts;
 
 	ts = cal_size3(size);
-	// printf("ts: %d %d %d\n", ts.s1, ts.s2, ts.s3);
 	while (ts.s1 || ts.s2 || ts.s3)
 	{
 		node = get_node3(sb->tail, sa->tail, sb->header, is_max, ts);
@@ -73,16 +74,19 @@ static void	merge_sa_triangle(t_deque *sa, t_deque *sb, int size, int is_max)
 				push(sa, sb, "pa\n");
 			}
 			ts.s1--;
+			continue ;
 		}
 		if (node == sa->tail && ts.s2)
 		{
 			reverse_rotate(sa, "rra\n");
 			ts.s2--;
+			continue ;
 		}
 		if (node == sb->header && ts.s3)
 		{
 			push(sa, sb, "pa\n");
 			ts.s3--;
+			continue ;
 		}
 	}
 }
@@ -117,8 +121,6 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts, int depth,
 
 	ts = cal_size3(size);
 	cnt = cnts[depth];
-	if (size == 0)
-		return ;
 	if (size >= 3)
 	{
 		merge_sort(sa, sb, ts.s1, cnts, depth + 1, is_max);
@@ -134,6 +136,11 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts, int depth,
 		else
 			merge_sb_triangle(sa, sb, size, is_max);
 	}
+	if (depth == 0)
+		return ;
+	cnts[depth]++;
+	if (size == 2)
+		cnts[depth + 1] += 3;
 	while (size-- && cnt % 3 != 2)
 	{
 		if ((depth + cnt + 1) % 2)
@@ -141,7 +148,6 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts, int depth,
 		else
 			rotate(sb, "rb\n");
 	}
-	cnts[depth]++;
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
