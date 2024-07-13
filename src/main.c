@@ -111,6 +111,8 @@ int	main(int argc, char *argv[])
 		free_stack(sa, sb);
 		return (0);
 	}
+	sa->name = 'A';
+	sb->name = 'B';
 	push_swap(sa, sb, len);
 	free_stack(sa, sb);
 }

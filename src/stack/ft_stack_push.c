@@ -12,15 +12,17 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	push(t_deque *to, t_deque *from, char *cmd)
+void	push(t_deque *to, t_deque *from)
 {
 	t_list	*temp1;
 	t_list	*temp2;
 
 	if (!from->header)
 		return ;
-	if (*cmd != '\0')
-		ft_putstr_fd(cmd, 1);
+	if (to->name == 'A')
+		ft_putstr_fd("pa\n", 1);
+	else
+		ft_putstr_fd("pb\n", 1);
 	temp1 = to->header;
 	temp2 = from->header->next;
 	to->header = from->header;

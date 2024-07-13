@@ -12,7 +12,7 @@
 
 #include "../../inc/ft_push_swap.h"
 
-void	rotate(t_deque *stack, char *cmd)
+void	rotate(t_deque *stack)
 {
 	t_list	*last;
 	t_list	*ptr;
@@ -32,13 +32,15 @@ void	rotate(t_deque *stack, char *cmd)
 		ptr = ptr->prev;
 	}
 	last->content = temp1;
-	if (*cmd != '\0')
-		ft_putstr_fd(cmd, 1);
+	if (stack->name == 'A')
+		ft_putstr_fd("ra\n", 1);
+	else
+		ft_putstr_fd("rb\n", 1);
 }
 
-void	rotate_twin(t_deque *sa, t_deque *sb)
-{
-	rotate(sa, "");
-	rotate(sb, "");
-	ft_putstr_fd("rr\n", 1);
-}
+// void	rotate_twin(t_deque *sa, t_deque *sb)
+// {
+// 	rotate(sa, "");
+// 	rotate(sb, "");
+// 	ft_putstr_fd("rr\n", 1);
+// }

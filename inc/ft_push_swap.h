@@ -22,6 +22,7 @@ typedef struct s_deque
 	t_list			*header;
 	t_list			*tail;
 	unsigned int	len;
+	char			name;
 }					t_deque;
 
 typedef struct s_size
@@ -31,18 +32,18 @@ typedef struct s_size
 	unsigned int	s3;
 }					t_size;
 
-void	swap(t_deque *stack, char *cmd);
+void	swap(t_deque *stack);
 void	swap_twin(t_deque *as, t_deque *bs);
-void	push(t_deque *to, t_deque *from, char *cmd);
-void	rotate(t_deque *stack, char *cmd);
+void	push(t_deque *to, t_deque *from);
+void	rotate(t_deque *stack);
 void	rotate_twin(t_deque *as, t_deque *bs);
-void	reverse_rotate(t_deque *stack, char *cmd);
+void	reverse_rotate(t_deque *stack);
 void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 
 void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);
 
-t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max, t_size ts);
+t_list	*get_node3(t_deque *s1, t_deque *s2, t_size ts, int is_max);
 int		is_sorted(t_deque *sa);
 int		get_depth(int size);
 int		is_swap(t_deque *stack, int is_max);
