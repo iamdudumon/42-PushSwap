@@ -100,50 +100,51 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, int is_max,
 	}
 }
 
-static void	merge_sort(t_deque *sa, t_deque *sb, int size, int *cnts, int depth, int is_max)
+static void	merge_triangle(t_deque *sa, t_deque *sb, int size, int is_max, int is_a)
 {
-	t_size	ts;
-	int		cnt;
+	if (size <= 2)
+		return merge_small_triangle(sa, sb, size, is_max, is_a);
+	if (is_a)
+		merge_sa_triangle(sa, sb, size, is_max);
+	else
+		merge_sb_triangle(sa, sb, size, is_max);
+}
 
+static void	merge_sort(t_deque *sa, t_deque *sb, int size, int depth, int is_max)
+{
+	static int	*cnts;
+	t_size		ts;
+	int			cnt;
+	int			is_a;
+
+	if (!cnts)
+	{
+		cnts = (int *)malloc(sizeof(int) * (10 + 1));
+		ft_memset(cnts, 0, sizeof(int) * (10 + 1));
+	}
 	ts = cal_size3(size);
-	cnt = cnts[depth];
 	if (size >= 3)
 	{
-		merge_sort(sa, sb, ts.s1, cnts, depth + 1, is_max);
-		merge_sort(sa, sb, ts.s2, cnts, depth + 1, is_max);
-		merge_sort(sa, sb, ts.s3, cnts, depth + 1, is_max == 0);
+		merge_sort(sa, sb, ts.s1, depth + 1, is_max);
+		merge_sort(sa, sb, ts.s2, depth + 1, is_max);
+		merge_sort(sa, sb, ts.s3, depth + 1, is_max == 0);
 	}
-	if (size <= 2)
-		merge_small_triangle(sa, sb, size, is_max, (depth + cnt + 1) % 2);
-	else
-	{
-		if ((depth + cnt + 1) % 2)
-			merge_sa_triangle(sa, sb, size, is_max);
-		else
-			merge_sb_triangle(sa, sb, size, is_max);
-	}
+	cnt = cnts[depth]++;
+	is_a = (cnt + depth + 1) % 2;
+	merge_triangle(sa, sb, size, is_max, is_a);
 	if (depth == 0)
-		return ;
-	cnts[depth]++;
+		return free(cnts);
 	if (size == 2)
 		cnts[depth + 1] += 3;
 	while (size-- && cnt % 3 != 2)
-	{
-		if ((depth + cnt + 1) % 2)
+		if (is_a)
 			rotate(sa, "ra\n");
 		else
 			rotate(sb, "rb\n");
-	}
+
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
-	int		i;
-	int		depth;
-	int		*cnts;
-
-	cnts = (int *)malloc(sizeof(int) * (depth + 1));
-	ft_memset(cnts, 0, sizeof(int) * (depth + 1));
-	merge_sort(sa, sb, size, cnts, 0, 1);
-	free(cnts);
+	merge_sort(sa, sb, size, 0, 1);
 }
