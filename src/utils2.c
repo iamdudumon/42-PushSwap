@@ -12,19 +12,6 @@
 
 #include "../inc/ft_push_swap.h"
 
-int	get_depth(int size)
-{
-	int	i;
-
-	i = 0;
-	while (size)
-	{
-		size /= 3;
-		i++;
-	}
-	return (i);
-}
-
 int	is_swap(t_deque *stack, int is_max)
 {
 	int	head;

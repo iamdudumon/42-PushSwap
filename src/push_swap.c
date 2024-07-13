@@ -70,19 +70,20 @@ static void	merge_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		merge_3_triangle(sa, sb, size, is);
 }
 
-static void	merge_sort(t_deque *sa, t_deque *sb, int size, int depth, t_is is)
+static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 {
+	static int	ori_size = 0;
 	t_size		ts;
 
 	ts = cal_size3(size);
 	if (size >= 3)
 	{
-		merge_sort(sa, sb, ts.s1, depth + 1, is_return(is, 1));
-		merge_sort(sa, sb, ts.s2, depth + 1, is_return(is, 2));
-		merge_sort(sa, sb, ts.s3, depth + 1, is_return(is, 3));
+		merge_sort(sa, sb, ts.s1, is_return(is, 1));
+		merge_sort(sa, sb, ts.s2, is_return(is, 2));
+		merge_sort(sa, sb, ts.s3, is_return(is, 3));
 	}
 	merge_triangle(sa, sb, size, is);
-	if (depth == 0)
+	if (!(sb->header) && is_sorted(sa))
 		return ;
 	while (size-- && !is.is_3)
 	{
@@ -102,5 +103,5 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 	is.is_max = 1;
 	is.is_a = 1;
 	is.is_3 = 0;
-	merge_sort(sa, sb, size, 0, is);
+	merge_sort(sa, sb, size, is);
 }
