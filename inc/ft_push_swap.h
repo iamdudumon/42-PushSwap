@@ -19,22 +19,17 @@
 
 typedef struct s_deque
 {
-	t_list	*header;
-	t_list	*tail;
-}			t_deque;
-
-typedef struct s_layer
-{
-	int		depth;
-	int		cnt;
-}			t_layer;
+	t_list			*header;
+	t_list			*tail;
+	unsigned int	len;
+}					t_deque;
 
 typedef struct s_size
 {
-	int		s1;
-	int		s2;
-	int		s3;
-}			t_size;
+	unsigned int	s1;
+	unsigned int	s2;
+	unsigned int	s3;
+}					t_size;
 
 void	swap(t_deque *stack, char *cmd);
 void	swap_twin(t_deque *as, t_deque *bs);

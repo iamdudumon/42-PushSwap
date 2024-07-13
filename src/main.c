@@ -69,12 +69,10 @@ static t_deque	*str_to_stack(char **split, int len, int *error)
 	t_deque	*stack;
 
 	stack = init_stack();
-	if (!stack)
+	set = (int *)malloc(sizeof(int) * len);
+	if (!stack || !set)
 		return (0);
 	i = -1;
-	set = (int *)malloc(sizeof(int) * len);
-	if (!set)
-		return (0);
 	while (++i < len)
 	{
 		node = create_intnode(split[i], len, set);
@@ -86,6 +84,7 @@ static t_deque	*str_to_stack(char **split, int len, int *error)
 		ft_lstadd_back(&(stack->header), node);
 		stack->tail = node;
 	}
+	stack->len = len;
 	free(set);
 	return (stack);
 }

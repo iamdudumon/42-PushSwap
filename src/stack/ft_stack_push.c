@@ -34,4 +34,6 @@ void	push(t_deque *to, t_deque *from, char *cmd)
 		from->tail = 0;
 	if (!to->tail)
 		to->tail = to->header;
+	to->len++;
+	from->len--;
 }
