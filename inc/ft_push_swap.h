@@ -25,9 +25,16 @@ typedef struct s_deque
 
 typedef struct s_layer
 {
-	char	is_a;
+	int		depth;
 	int		cnt;
 }			t_layer;
+
+typedef struct s_size
+{
+	int		s1;
+	int		s2;
+	int		s3;
+}			t_size;
 
 void	swap(t_deque *stack, char *cmd);
 void	swap_twin(t_deque *as, t_deque *bs);
@@ -40,8 +47,11 @@ void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);
 
-t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max, int c1, int c2, int c3);
+t_list	*get_node3(t_list *node1, t_list *node2, t_list *node3, int is_max, t_size ts);
+int		is_sorted(t_deque *sa);
 int		get_depth(int size);
+int		is_swap(t_deque *stack, int is_max);
+t_size	cal_size3(int size);
 
 void	push_swap(t_deque *sa, t_deque *sb, int size);
 
