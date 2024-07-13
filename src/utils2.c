@@ -12,7 +12,7 @@
 
 #include "../inc/ft_push_swap.h"
 
-int		get_depth(int size)
+int	get_depth(int size)
 {
 	int	i;
 
@@ -47,14 +47,14 @@ t_size	cal_size3(int size)
 {
 	t_size	ts;
 	int		c;
-	
+
 	c = size % 3;
-    if (c == 0)
-        c = 0;
-    else
-        c -= 1;
-    ts.s1 = size - (2 * (size / 3) + c);
-    ts.s2 = size - ts.s1 - ((size - ts.s1) / 2);
-    ts.s3 = size - ts.s1 - ts.s2;
+	if (c == 0)
+		c = 0;
+	else
+		c -= 1;
+	ts.s1 = size - (2 * (size / 3) + c);
+	ts.s2 = size - ts.s1 - ((size - ts.s1) / 2);
+	ts.s3 = size - ts.s1 - ts.s2;
 	return (ts);
 }

@@ -12,7 +12,8 @@
 
 #include "../inc/ft_push_swap.h"
 
-static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, t_size ts)
+static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, \
+																	t_size ts)
 {
 	int	v1;
 	int	v2;
@@ -37,7 +38,8 @@ static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, t_size
 	return (node3);
 }
 
-static t_list	*get_min_node3(t_list *node1, t_list *node2, t_list *node3, t_size ts)
+static t_list	*get_min_node3(t_list *node1, t_list *node2, t_list *node3, \
+																	t_size ts)
 {
 	int	v1;
 	int	v2;
@@ -64,9 +66,9 @@ static t_list	*get_min_node3(t_list *node1, t_list *node2, t_list *node3, t_size
 
 t_list	*get_node3(t_deque *s1, t_deque *s2, t_size ts, int is_max)
 {
-    if (is_max)
-        return (get_max_node3(s1->tail, s2->tail, s1->header, ts));
-    return (get_min_node3(s1->tail, s2->tail, s1->header, ts));
+	if (is_max)
+		return (get_max_node3(s1->tail, s2->tail, s1->header, ts));
+	return (get_min_node3(s1->tail, s2->tail, s1->header, ts));
 }
 
 int	is_sorted(t_deque *sa)
