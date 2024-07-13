@@ -25,6 +25,13 @@ typedef struct s_deque
 	char			name;
 }					t_deque;
 
+typedef struct s_is
+{
+	char		is_max;
+	char		is_a;
+	char		is_3;
+}				t_is;
+
 typedef struct s_size
 {
 	unsigned int	s1;
@@ -33,12 +40,12 @@ typedef struct s_size
 }					t_size;
 
 void	swap(t_deque *stack);
-void	swap_twin(t_deque *as, t_deque *bs);
+// void	swap_twin(t_deque *as, t_deque *bs);
 void	push(t_deque *to, t_deque *from);
 void	rotate(t_deque *stack);
-void	rotate_twin(t_deque *as, t_deque *bs);
+// void	rotate_twin(t_deque *as, t_deque *bs);
 void	reverse_rotate(t_deque *stack);
-void	reverse_rotate_twin(t_deque *as, t_deque *bs);
+// void	reverse_rotate_twin(t_deque *as, t_deque *bs);
 
 void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);
@@ -48,6 +55,7 @@ int		is_sorted(t_deque *sa);
 int		get_depth(int size);
 int		is_swap(t_deque *stack, int is_max);
 t_size	cal_size3(int size);
+t_is	is_return(t_is is, int n);
 
 void	push_swap(t_deque *sa, t_deque *sb, int size);
 

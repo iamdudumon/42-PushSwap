@@ -58,3 +58,21 @@ t_size	cal_size3(int size)
 	ts.s3 = size - ts.s1 - ts.s2;
 	return (ts);
 }
+
+t_is	is_return(t_is is, int n)
+{
+	if (n == 1)
+	{
+		is.is_a = is.is_a == 0;
+		is.is_3 = 0;
+	}
+	if (n == 2)
+		is.is_3 = 0;
+	if (n == 3)
+	{
+		is.is_max = is.is_max == 0;
+		is.is_a = is.is_a == 0;
+		is.is_3 = 1;
+	}
+	return (is);
+}
