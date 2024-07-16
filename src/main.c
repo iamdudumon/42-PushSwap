@@ -97,6 +97,8 @@ int	main(int argc, char *argv[])
 	t_deque	*sa;
 	t_deque	*sb;
 
+	if (argc <= 1)
+		return (0);
 	split = ft_split(argv[1], ' ');
 	len = 0;
 	error = 0;
@@ -116,11 +118,3 @@ int	main(int argc, char *argv[])
 	push_swap(sa, sb, len);
 	free_stack(sa, sb);
 }
-
-// rotate(stack);
-// //reverse_rotate(stack);
-// while (stack)
-// {
-// 	printf("%d\n", *(int *)(stack->content));
-// 	stack = stack->next;
-// }
