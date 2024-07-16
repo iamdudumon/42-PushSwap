@@ -12,7 +12,7 @@
 
 #include "../inc/ft_push_swap.h"
 
-static void	merge_3_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
+static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 {
 	t_list	*node;
 	t_size	ts;
@@ -39,7 +39,7 @@ static void	merge_3_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 	}
 }
 
-static void	merge_12_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
+static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 {
 	if (is.is_a)
 	{
@@ -47,6 +47,8 @@ static void	merge_12_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 			return ;
 		if (is_swap(sa, is.is_max))
 			swap(sa);
+		if (size == 3)
+			sort_3_triangle(sa, 3, is.is_max);
 		return ;
 	}
 	push(sb, sa);
@@ -55,19 +57,26 @@ static void	merge_12_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 	push(sb, sa);
 	if (is_swap(sb, is.is_max))
 		swap(sb);
+	if (size == 3)
+	{
+		push(sb, sa);
+		if (is_swap(sb, is.is_max))
+			swap(sb);
+		sort_3_triangle(sb, 3, is.is_max);
+	}
 }
 
 static void	merge_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 {
-	if (size <= 2)
+	if (size <= 3)
 	{
-		merge_12_triangle(sa, sb, size, is);
+		merge_small_triangle(sa, sb, size, is);
 		return ;
 	}
 	if (is.is_a)
-		merge_3_triangle(sb, sa, size, is);
+		merge_big_triangle(sb, sa, size, is);
 	else
-		merge_3_triangle(sa, sb, size, is);
+		merge_big_triangle(sa, sb, size, is);
 }
 
 static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
@@ -76,29 +85,26 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 	t_size		ts;
 
 	ts = cal_size3(size);
-	if (size >= 3)
+	if (size >= 4)
 	{
 		merge_sort(sa, sb, ts.s1, is_return(is, 1));
 		merge_sort(sa, sb, ts.s2, is_return(is, 2));
 		merge_sort(sa, sb, ts.s3, is_return(is, 3));
 	}
 	merge_triangle(sa, sb, size, is);
-	if (!(sb->header) && is_sorted(sa))
+	if (is.is_3 || (!(sb->header) && is_sorted(sa, sa->len, 1)))
 		return ;
-	while (size-- && !is.is_3)
-	{
-		if (is.is_a)
-			rotate(sa);
-		else
-			rotate(sb);
-	}
+	if (is.is_a)
+		drop_triangle_bottom(sa, size);
+	else
+		drop_triangle_bottom(sb, size);
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
 	t_is	is;
 
-	if (is_sorted(sa))
+	if (is_sorted(sa, sa->len, 1))
 		return ;
 	is.is_max = 1;
 	is.is_a = 1;

@@ -51,10 +51,13 @@ void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);
 
 t_list	*get_node3(t_deque *s1, t_deque *s2, t_size ts, int is_max);
-int		is_sorted(t_deque *sa);
+int		is_sorted(t_deque *stack, unsigned int size, char is_max);
 int		is_swap(t_deque *stack, int is_max);
 t_size	cal_size3(int size);
 t_is	is_return(t_is is, int n);
+
+void    drop_triangle_bottom(t_deque *stack, unsigned int size);
+void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max);
 
 void	push_swap(t_deque *sa, t_deque *sb, int size);
 

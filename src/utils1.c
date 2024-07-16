@@ -71,14 +71,16 @@ t_list	*get_node3(t_deque *s1, t_deque *s2, t_size ts, int is_max)
 	return (get_min_node3(s1->tail, s2->tail, s1->header, ts));
 }
 
-int	is_sorted(t_deque *sa)
+int	is_sorted(t_deque *stack, unsigned int size, char is_max)
 {
 	t_list	*ptr;
 
-	ptr = sa->header;
-	while (ptr->next)
+	ptr = stack->header;
+	while (ptr->next && size--)
 	{
-		if (*(int *)(ptr->content) > *(int *)(ptr->next->content))
+		if (is_max && *(int *)(ptr->content) > *(int *)(ptr->next->content))
+			return (0);
+		if (!is_max && *(int *)(ptr->content) < *(int *)(ptr->next->content))
 			return (0);
 		ptr = ptr->next;
 	}
