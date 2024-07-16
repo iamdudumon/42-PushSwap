@@ -105,8 +105,6 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 {
 	t_is	is;
 
-	if (is_sorted(sa, sa->len, 1))
-		return ;
 	is.is_max = 1;
 	is.is_a = 1;
 	is.is_3 = 0;
