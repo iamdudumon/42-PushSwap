@@ -65,10 +65,10 @@ static t_deque	*init_stack(void)
 static t_deque	*str_to_stack(t_deque *stack, char **split, int *set)
 {
 	int		i;
-    int     len;
+	int		len;
 	t_list	*node;
 
-    len = 0;
+	len = 0;
 	while (split[len])
 		len++;
 	i = -1;
@@ -87,19 +87,19 @@ static t_deque	*str_to_stack(t_deque *stack, char **split, int *set)
 	return (stack);
 }
 
-t_deque *generate_stack(int argc, char *argv[])
+t_deque	*generate_stack(int argc, char *argv[])
 {
 	t_deque	*stack;
-	char    **split;
+	char	**split;
 	int		*set;
-	int     i;
+	int		i;
 
 	set = (int *)malloc(sizeof(int) * 1000);
 	stack = init_stack();
 	if (!set || !stack)
 		return (0);
-    i = 1;
-    while (i < argc)
+	i = 1;
+	while (i < argc)
 	{
 		split = ft_split(argv[i], ' ');
 		stack = str_to_stack(stack, split, set);

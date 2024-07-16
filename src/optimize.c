@@ -14,11 +14,11 @@
 
 void	drop_triangle_bottom(t_deque *stack, unsigned int size)
 {
-	unsigned int    len;
+	unsigned int	len;
 
 	len = stack->len - size;
 	if (len <= (stack->len) / 2)
-    {
+	{
 		while (len--)
 			reverse_rotate(stack);
 		return ;
@@ -29,7 +29,7 @@ void	drop_triangle_bottom(t_deque *stack, unsigned int size)
 
 void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max)
 {
-    if (is_sorted(stack, 3, is_max))
+	if (is_sorted(stack, 3, is_max))
 		return ;
 	rotate(stack);
 	if (is_swap(stack, is_max))
