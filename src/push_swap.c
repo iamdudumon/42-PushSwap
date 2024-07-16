@@ -81,9 +81,10 @@ static void	merge_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 
 static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 {
-	static int	ori_size = 0;
 	t_size		ts;
 
+	if (earlyreturn_sorted_stack(sa, sb, size, is))
+		return ;
 	ts = cal_size3(size);
 	if (size >= 4)
 	{

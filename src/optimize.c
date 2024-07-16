@@ -40,3 +40,26 @@ void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max)
 	if (is_swap(stack, is_max))
 		swap(stack);
 }
+
+int	earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
+								unsigned int size, t_is is)
+{
+	int	i;
+
+	if (is.is_a && is_sorted(sa, size, is.is_max))
+	{
+		if (!is.is_3)
+			drop_triangle_bottom(sa, size);
+		return (1);
+	}
+	if (!is.is_a && is_sorted(sa, size, is.is_max == 0))
+	{
+		i = size;
+		while (i--)
+			push(sb, sa);
+		if (!is.is_3)
+			drop_triangle_bottom(sb, size);
+		return (1);
+	}
+	return (0);
+}

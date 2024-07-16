@@ -58,6 +58,8 @@ t_is	is_return(t_is is, int n);
 
 void	drop_triangle_bottom(t_deque *stack, unsigned int size);
 void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max);
+int		earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
+									unsigned int size, t_is is);
 
 t_deque	*generate_stack(int argc, char *argv[]);
 
