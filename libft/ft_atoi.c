@@ -36,11 +36,11 @@ int	ft_atoi(const char *nptr, char *error)
 		if (!ft_isdigit(*nptr))
 			*error = 1;
 		sum = sum * 10 + (*nptr - '0');
+		if (sum > 2147483647 || sum < -2147483648)
+			*error = 1;
 		nptr++;
 	}
 	if (minus_cnt)
 		sum = -sum;
-	if (sum > 2147483647 || sum < -2147483648)
-		*error = 1;
 	return (sum);
 }
