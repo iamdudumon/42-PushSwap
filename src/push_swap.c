@@ -89,8 +89,16 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 	if (size >= 4)
 	{
 		merge_sort(sa, sb, ts.s1, is_return(is, 1));
-		merge_sort(sa, sb, ts.s2, is_return(is, 2));
-		merge_sort(sa, sb, ts.s3, is_return(is, 3));
+		if (is.is_a)
+		{	
+			merge_sort(sa, sb, ts.s3, is_return(is, 3));
+			merge_sort(sa, sb, ts.s2, is_return(is, 2));
+		}
+		else
+		{
+			merge_sort(sa, sb, ts.s2, is_return(is, 2));
+			merge_sort(sa, sb, ts.s3, is_return(is, 3));
+		}
 	}
 	merge_triangle(sa, sb, size, is);
 	if (is.is_3 || (!(sb->header) && is_sorted(sa, sa->len, 1)))
