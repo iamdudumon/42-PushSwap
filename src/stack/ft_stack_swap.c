@@ -21,10 +21,6 @@ void	swap(t_deque *stack)
 	temp = stack->header->content;
 	stack->header->content = stack->header->next->content;
 	stack->header->next->content = temp;
-	if (stack->name == 'A')
-		ft_putstr_fd("sa\n", 1);
-	else
-		ft_putstr_fd("sb\n", 1);
 }
 
 // void	swap_twin(t_deque *as, t_deque *bs)

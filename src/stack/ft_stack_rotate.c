@@ -32,10 +32,6 @@ void	rotate(t_deque *stack)
 		ptr = ptr->prev;
 	}
 	last->content = temp1;
-	if (stack->name == 'A')
-		ft_putstr_fd("ra\n", 1);
-	else
-		ft_putstr_fd("rb\n", 1);
 }
 
 // void	rotate_twin(t_deque *sa, t_deque *sb)

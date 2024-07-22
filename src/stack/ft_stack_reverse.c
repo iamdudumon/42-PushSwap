@@ -30,10 +30,6 @@ void	reverse_rotate(t_deque *stack)
 		ptr = ptr->next;
 	}
 	stack->header->content = temp1;
-	if (stack->name == 'A')
-		ft_putstr_fd("rra\n", 1);
-	else
-		ft_putstr_fd("rrb\n", 1);
 }
 
 // void	reverse_rotate_twin(t_deque *as, t_deque *bs)

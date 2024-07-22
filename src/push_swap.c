@@ -23,18 +23,32 @@ static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 		node = get_node3(s1, s2, ts, is.is_max);
 		if (node == s1->tail && ts.s1)
 		{
-			reverse_rotate(s1);
-			push(s2, s1);
+			if (s1->name == 'A')
+			{
+				command_cotroller(s1, s2, "rra");
+				command_cotroller(s1, s2, "pb");
+			}
+			else
+			{
+				command_cotroller(s2, s1, "rrb");
+				command_cotroller(s2, s1, "pa");
+			}
 			ts.s1--;
 			continue ;
 		}
 		if (node == s2->tail && ts.s2)
 		{
-			reverse_rotate(s2);
+			if (s1->name == 'A')
+				command_cotroller(s1, s2, "rrb");	
+			else
+				command_cotroller(s2, s1, "rra");
 			ts.s2--;
 			continue ;
 		}
-		push(s2, s1);
+		if (s1->name == 'A')
+			command_cotroller(s1, s2, "pb");	
+		else
+			command_cotroller(s2, s1, "pa");
 		ts.s3--;
 	}
 }
@@ -46,23 +60,24 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		if (size == 1)
 			return ;
 		if (is_swap(sa, is.is_max))
-			swap(sa);
+			command_cotroller(sa, sb, "sa");
 		if (size == 3)
-			sort_3_triangle(sa, 3, is.is_max);
+			sort_3_triangle(sa, sa, sb, 3, is.is_max);
 		return ;
 	}
-	push(sb, sa);
+
+	command_cotroller(sa, sb, "pb");
 	if (size == 1)
 		return ;
-	push(sb, sa);
+	command_cotroller(sa, sb, "pb");
 	if (is_swap(sb, is.is_max))
-		swap(sb);
+		command_cotroller(sa, sb, "sb");
 	if (size == 3)
 	{
-		push(sb, sa);
+		command_cotroller(sa, sb, "pb");
 		if (is_swap(sb, is.is_max))
-			swap(sb);
-		sort_3_triangle(sb, 3, is.is_max);
+			command_cotroller(sa, sb, "sb");
+		sort_3_triangle(sb, sa, sb, 3, is.is_max);
 	}
 }
 
@@ -102,9 +117,9 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 	if (is.is_3 || (!(sb->header) && is_sorted(sa, sa->len, 1)))
 		return ;
 	if (is.is_a)
-		drop_triangle_bottom(sa, size);
+		drop_triangle_bottom(sa, sa, sb, size);
 	else
-		drop_triangle_bottom(sb, size);
+		drop_triangle_bottom(sb, sa, sb, size);
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
@@ -115,4 +130,5 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 	is.is_a = 1;
 	is.is_3 = 0;
 	merge_sort(sa, sb, size, is);
+	command_cotroller(sa, sb, "end");
 }

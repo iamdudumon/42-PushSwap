@@ -19,10 +19,6 @@ void	push(t_deque *to, t_deque *from)
 
 	if (!from->header)
 		return ;
-	if (to->name == 'A')
-		ft_putstr_fd("pa\n", 1);
-	else
-		ft_putstr_fd("pb\n", 1);
 	temp1 = to->header;
 	temp2 = from->header->next;
 	to->header = from->header;
