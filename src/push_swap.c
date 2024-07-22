@@ -25,13 +25,13 @@ static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 		{
 			if (s1->name == 'A')
 			{
-				command_cotroller(s1, s2, "rra");
-				command_cotroller(s1, s2, "pb");
+				command_cotroller(s1, s2, 7);
+				command_cotroller(s1, s2, 4);
 			}
 			else
 			{
-				command_cotroller(s2, s1, "rrb");
-				command_cotroller(s2, s1, "pa");
+				command_cotroller(s2, s1, 8);
+				command_cotroller(s2, s1, 3);
 			}
 			ts.s1--;
 			continue ;
@@ -39,16 +39,16 @@ static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 		if (node == s2->tail && ts.s2)
 		{
 			if (s1->name == 'A')
-				command_cotroller(s1, s2, "rrb");	
+				command_cotroller(s1, s2, 8);	
 			else
-				command_cotroller(s2, s1, "rra");
+				command_cotroller(s2, s1, 7);
 			ts.s2--;
 			continue ;
 		}
 		if (s1->name == 'A')
-			command_cotroller(s1, s2, "pb");	
+			command_cotroller(s1, s2, 4);	
 		else
-			command_cotroller(s2, s1, "pa");
+			command_cotroller(s2, s1, 3);
 		ts.s3--;
 	}
 }
@@ -60,23 +60,23 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		if (size == 1)
 			return ;
 		if (is_swap(sa, is.is_max))
-			command_cotroller(sa, sb, "sa");
+			command_cotroller(sa, sb, 1);
 		if (size == 3)
 			sort_3_triangle(sa, sa, sb, 3, is.is_max);
 		return ;
 	}
 
-	command_cotroller(sa, sb, "pb");
+	command_cotroller(sa, sb, 4);
 	if (size == 1)
 		return ;
-	command_cotroller(sa, sb, "pb");
+	command_cotroller(sa, sb, 4);
 	if (is_swap(sb, is.is_max))
-		command_cotroller(sa, sb, "sb");
+		command_cotroller(sa, sb, 2);
 	if (size == 3)
 	{
-		command_cotroller(sa, sb, "pb");
+		command_cotroller(sa, sb, 4);
 		if (is_swap(sb, is.is_max))
-			command_cotroller(sa, sb, "sb");
+			command_cotroller(sa, sb, 2);
 		sort_3_triangle(sb, sa, sb, 3, is.is_max);
 	}
 }
@@ -130,5 +130,5 @@ void	push_swap(t_deque *sa, t_deque *sb, int size)
 	is.is_a = 1;
 	is.is_3 = 0;
 	merge_sort(sa, sb, size, is);
-	command_cotroller(sa, sb, "end");
+	command_cotroller(sa, sb, 0);
 }

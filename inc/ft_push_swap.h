@@ -60,7 +60,7 @@ void	drop_triangle_bottom(t_deque *stack, t_deque *sa, t_deque *sb, unsigned int
 void	sort_3_triangle(t_deque *stack, t_deque *sa, t_deque *sb, unsigned int size, char is_max);
 int		earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
 									unsigned int size, t_is is);
-void	command_cotroller(t_deque *sa, t_deque *sb, char *cmd);
+void	command_cotroller(t_deque *sa, t_deque *sb, int cmd_num);
 
 t_deque	*generate_stack(int argc, char *argv[]);
 

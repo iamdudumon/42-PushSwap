@@ -21,16 +21,16 @@ void	drop_triangle_bottom(t_deque *stack, t_deque *sa, t_deque *sb, unsigned int
 	{
 		while (len--)
 			if (stack->name == 'A')
-				command_cotroller(sa, sb, "rra");	
+				command_cotroller(sa, sb, 7);	
 			else
-				command_cotroller(sa, sb, "rrb");
+				command_cotroller(sa, sb, 8);
 		return ;
 	}
 	while (size--)
 		if (stack->name == 'A')
-			command_cotroller(sa, sb, "ra");	
+			command_cotroller(sa, sb, 5);	
 		else
-			command_cotroller(sa, sb, "rb");
+			command_cotroller(sa, sb, 6);
 }
 
 void	sort_3_triangle(t_deque *stack, t_deque *sa, t_deque *sb, unsigned int size, char is_max)
@@ -38,25 +38,25 @@ void	sort_3_triangle(t_deque *stack, t_deque *sa, t_deque *sb, unsigned int size
 	if (is_sorted(stack, 3, is_max))
 		return ;
 	if (stack->name == 'A')
-		command_cotroller(sa, sb, "ra");	
+		command_cotroller(sa, sb, 5);	
 	else
-		command_cotroller(sa, sb, "rb");
+		command_cotroller(sa, sb, 6);
 	if (is_swap(stack, is_max))
 		if (stack->name == 'A')
-			command_cotroller(sa, sb, "sa");	
+			command_cotroller(sa, sb, 1);	
 		else
-			command_cotroller(sa, sb, "sb");
+			command_cotroller(sa, sb, 2);
 	if (stack->name == 'A')
-		command_cotroller(sa, sb, "rra");	
+		command_cotroller(sa, sb, 7);	
 	else
-		command_cotroller(sa, sb, "rrb");
+		command_cotroller(sa, sb, 8);
 	if (is_sorted(stack, 3, is_max))
 		return ;
 	if (is_swap(stack, is_max))
 		if (stack->name == 'A')
-			command_cotroller(sa, sb, "sa");	
+			command_cotroller(sa, sb, 1);	
 		else
-			command_cotroller(sa, sb, "sb");
+			command_cotroller(sa, sb, 2);
 }
 
 int	earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
@@ -74,7 +74,7 @@ int	earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
 	{
 		i = size;
 		while (i--)
-			command_cotroller(sa, sb, "pb");
+			command_cotroller(sa, sb, 4);
 		if (!is.is_3)
 			drop_triangle_bottom(sb, sa, sb, size);
 		return (1);
@@ -82,91 +82,68 @@ int	earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
 	return (0);
 }
 
-void	command_cotroller(t_deque *sa, t_deque *sb, char *cmd)
+static void	print_command(int cmd_num)
+{
+	if (cmd_num == 1)
+		ft_putendl_fd("sa", 1);
+	if (cmd_num == 2)
+		ft_putendl_fd("sb", 1);
+	if (cmd_num == 3)
+		ft_putendl_fd("pa", 1);
+	if (cmd_num == 4)
+		ft_putendl_fd("pb", 1);
+	if (cmd_num == 5)
+		ft_putendl_fd("ra", 1);
+	if (cmd_num == 6)
+		ft_putendl_fd("rb", 1);
+	if (cmd_num == 7)
+		ft_putendl_fd("rra", 1);
+	if (cmd_num == 8)
+		ft_putendl_fd("rrb", 1);
+}
+
+void	command_cotroller(t_deque *sa, t_deque *sb, int cmd_num)
 {
 	static int	pre_cmd;
-	int	cur_cmd;
 
-	cur_cmd =0;
-	if (!ft_strncmp(cmd, "sa", 2))
-	{
+	if (cmd_num == 1)
 		swap(sa);
-		cur_cmd = 1;
-	}
-	else if (!ft_strncmp(cmd, "sb", 2))
-	{	
+	if (cmd_num == 2)
 		swap(sb);
-		cur_cmd = 2;
-	}
-	else if (!ft_strncmp(cmd, "pa", 2))
-	{
+	if (cmd_num == 3)
 		push(sa, sb);
-		cur_cmd = 3;
-	}
-	else if (!ft_strncmp(cmd, "pb", 2))
-	{
+	if (cmd_num == 4)
 		push(sb, sa);
-		cur_cmd = 4;
-	}
-	else if (!ft_strncmp(cmd, "ra", 2))
-	{
+	if (cmd_num == 5)
 		rotate(sa);
-		cur_cmd = 5;
-	}
-	else if (!ft_strncmp(cmd, "rb", 2))
-	{
+	if (cmd_num == 6)
 		rotate(sb);
-		cur_cmd = 6;
-	}
-	else if (!ft_strncmp(cmd, "rra", 3))
-	{
+	if (cmd_num == 7)
 		reverse_rotate(sa);
-		cur_cmd = 7;
-	}
-	else if (!ft_strncmp(cmd, "rrb", 3))
-	{
+	if (cmd_num == 8)
 		reverse_rotate(sb);
-		cur_cmd = 8;
-	}
-
-	if ((pre_cmd == 5 && cur_cmd == 7) || (pre_cmd == 7 && cur_cmd == 5) \
-		|| (pre_cmd == 6 && cur_cmd == 8) || (pre_cmd == 8 && cur_cmd == 6))
+	if ((pre_cmd == 5 && cmd_num == 7) || (pre_cmd == 7 && cmd_num == 5) \
+		|| (pre_cmd == 6 && cmd_num == 8) || (pre_cmd == 8 && cmd_num == 6))
 	{
 		pre_cmd = 0;
 		return ;
 	}
-	if ((pre_cmd == 5 && cur_cmd == 6) || (pre_cmd == 6 && cur_cmd == 5))
+	if ((pre_cmd == 5 && cmd_num == 6) || (pre_cmd == 6 && cmd_num == 5) \
+		|| (pre_cmd == 7 && cmd_num == 8) || (pre_cmd == 8 && cmd_num == 7))
 	{
+		
+		if (pre_cmd <= 6)
+			ft_putendl_fd("rr", 1);
+		else
+			ft_putendl_fd("rrr", 1);
 		pre_cmd = 0;
-		ft_putendl_fd("rr", 1);
 		return ;
 	}
-	if ((pre_cmd == 7 && cur_cmd == 8) || (pre_cmd == 8 && cur_cmd == 7))
-	{
-		pre_cmd = 0;
-		ft_putendl_fd("rrr", 1);
-		return ;
-	}
-	if (pre_cmd == 1)
-		ft_putendl_fd("sa", 1);
-	if (pre_cmd == 2)
-		ft_putendl_fd("sb", 1);
-	if (pre_cmd == 3)
-		ft_putendl_fd("pa", 1);
-	if (pre_cmd == 4)
-		ft_putendl_fd("pb", 1);
-	if (pre_cmd == 5)
-		ft_putendl_fd("ra", 1);
-	if (pre_cmd == 6)
-		ft_putendl_fd("rb", 1);
-	if (pre_cmd == 7)
-		ft_putendl_fd("rra", 1);
-	if (pre_cmd == 8)
-		ft_putendl_fd("rrb", 1);
-	if (pre_cmd && cur_cmd)
-		ft_putendl_fd(cmd, 1);
+	print_command(pre_cmd);
+	if (pre_cmd && cmd_num)
+		print_command(cmd_num);
 	if (pre_cmd == 0)
-		pre_cmd = cur_cmd;
+		pre_cmd = cmd_num;
 	else
 		pre_cmd = 0;
 }
