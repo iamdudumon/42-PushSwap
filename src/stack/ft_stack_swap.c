@@ -22,10 +22,3 @@ void	swap(t_deque *stack)
 	stack->header->content = stack->header->next->content;
 	stack->header->next->content = temp;
 }
-
-// void	swap_twin(t_deque *as, t_deque *bs)
-// {
-// 	swap(as, "");
-// 	swap(bs, "");
-// 	ft_putstr_fd("ss\n", 1);
-// }

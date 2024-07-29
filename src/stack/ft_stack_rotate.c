@@ -33,10 +33,3 @@ void	rotate(t_deque *stack)
 	}
 	last->content = temp1;
 }
-
-// void	rotate_twin(t_deque *sa, t_deque *sb)
-// {
-// 	rotate(sa, "");
-// 	rotate(sb, "");
-// 	ft_putstr_fd("rr\n", 1);
-// }

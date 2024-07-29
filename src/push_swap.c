@@ -23,33 +23,19 @@ static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 		node = get_node3(s1, s2, ts, is.is_max);
 		if (node == s1->tail && ts.s1)
 		{
-			if (s1->name == 'A')
-			{
-				command_cotroller(s1, s2, 7);
-				command_cotroller(s1, s2, 4);
-			}
-			else
-			{
-				command_cotroller(s2, s1, 8);
-				command_cotroller(s2, s1, 3);
-			}
+			exec_s1_tail(s1, s2);
 			ts.s1--;
-			continue ;
 		}
-		if (node == s2->tail && ts.s2)
+		else if (node == s2->tail && ts.s2)
 		{
-			if (s1->name == 'A')
-				command_cotroller(s1, s2, 8);	
-			else
-				command_cotroller(s2, s1, 7);
+			exec_s2_tail(s1, s2);
 			ts.s2--;
-			continue ;
 		}
-		if (s1->name == 'A')
-			command_cotroller(s1, s2, 4);	
 		else
-			command_cotroller(s2, s1, 3);
-		ts.s3--;
+		{
+			exec_s1_head(s1, s2);
+			ts.s3--;
+		}
 	}
 }
 
@@ -62,10 +48,9 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		if (is_swap(sa, is.is_max))
 			command_cotroller(sa, sb, 1);
 		if (size == 3)
-			sort_3_triangle(sa, sa, sb, 3, is.is_max);
+			sort_3_triangle(sa, 3, is.is_max);
 		return ;
 	}
-
 	command_cotroller(sa, sb, 4);
 	if (size == 1)
 		return ;
@@ -77,7 +62,7 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		command_cotroller(sa, sb, 4);
 		if (is_swap(sb, is.is_max))
 			command_cotroller(sa, sb, 2);
-		sort_3_triangle(sb, sa, sb, 3, is.is_max);
+		sort_3_triangle(sb, 3, is.is_max);
 	}
 }
 
@@ -117,9 +102,9 @@ static void	merge_sort(t_deque *sa, t_deque *sb, int size, t_is is)
 	if (is.is_3 || (!(sb->header) && is_sorted(sa, sa->len, 1)))
 		return ;
 	if (is.is_a)
-		drop_triangle_bottom(sa, sa, sb, size);
+		drop_triangle_bottom(sa, size);
 	else
-		drop_triangle_bottom(sb, sa, sb, size);
+		drop_triangle_bottom(sb, size);
 }
 
 void	push_swap(t_deque *sa, t_deque *sb, int size)
