@@ -12,6 +12,34 @@
 
 #include "../inc/ft_push_swap.h"
 
+void	sort_smail3(t_deque *sa)
+{
+	int	first;
+	int	second;
+	int	third;
+
+	first = *(int *)sa->header->content;
+	second = *(int *)sa->header->next->content;
+	third = *(int *)sa->header->next->next->content;
+	if (first < second && second > third && first > third)
+		command_cotroller(sa, 0, 7);
+	else if (first > second && second < third && first > third)
+		command_cotroller(sa, 0, 5);
+	else if (first > second && second > third)
+	{
+		command_cotroller(sa, 0, 5);
+		command_cotroller(sa, 0, 1);
+	}
+	else if (first < second && second > third && first < third)
+	{
+		command_cotroller(sa, 0, 7);
+		command_cotroller(sa, 0, 1);
+	}
+	else if (first > second && second < third && first < third)
+		command_cotroller(sa, 0, 1);
+	command_cotroller(sa, 0, 0);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		len;
@@ -30,6 +58,9 @@ int	main(int argc, char *argv[])
 	}
 	sa->name = 'A';
 	sb->name = 'B';
-	push_swap(sa, sb, sa->len);
+	if (sa->len == 3)
+		sort_smail3(sa);
+	else
+		push_swap(sa, sb, sa->len);
 	free_stack(sa, sb);
 }
