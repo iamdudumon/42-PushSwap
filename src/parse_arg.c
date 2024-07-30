@@ -29,7 +29,7 @@ static int	is_dup_inset(int *set, int integer)
 	return (0);
 }
 
-static t_list	*create_intnode(char *s, int len, int *set)
+static t_list	*create_intnode(char *s, int *set)
 {
 	t_list		*node;
 	int			*integer;
@@ -74,7 +74,7 @@ static t_deque	*str_to_stack(t_deque *stack, char **split, int *set)
 	i = -1;
 	while (++i < len)
 	{
-		node = create_intnode(split[i], len, set);
+		node = create_intnode(split[i], set);
 		if (!node)
 		{
 			free_stack(stack, 0);

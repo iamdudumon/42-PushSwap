@@ -37,7 +37,7 @@ void	drop_triangle_bottom(t_deque *stack, unsigned int size)
 	}
 }
 
-void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max)
+void	sort_3_triangle(t_deque *stack, char is_max)
 {
 	if (is_sorted(stack, 3, is_max))
 		return ;

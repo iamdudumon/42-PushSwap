@@ -58,7 +58,7 @@ void	exec_s2_tail(t_deque *s1, t_deque *s2);
 void	exec_s1_head(t_deque *s1, t_deque *s2);
 
 void	drop_triangle_bottom(t_deque *stack, unsigned int size);
-void	sort_3_triangle(t_deque *stack, unsigned int size, char is_max);
+void	sort_3_triangle(t_deque *stack, char is_max);
 int		earlyreturn_sorted_stack(t_deque *sa, t_deque *sb, \
 									unsigned int size, t_is is);
 void	command_cotroller(t_deque *sa, t_deque *sb, int cmd_num);

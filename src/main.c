@@ -42,7 +42,6 @@ void	sort_smail3(t_deque *sa)
 
 int	main(int argc, char *argv[])
 {
-	int		len;
 	t_deque	*sa;
 	t_deque	*sb;
 

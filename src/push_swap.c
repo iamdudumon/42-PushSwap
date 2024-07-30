@@ -48,7 +48,7 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		if (is_swap(sa, is.is_max))
 			command_cotroller(sa, sb, 1);
 		if (size == 3)
-			sort_3_triangle(sa, 3, is.is_max);
+			sort_3_triangle(sa, is.is_max);
 		return ;
 	}
 	command_cotroller(sa, sb, 4);
@@ -62,7 +62,7 @@ static void	merge_small_triangle(t_deque *sa, t_deque *sb, int size, t_is is)
 		command_cotroller(sa, sb, 4);
 		if (is_swap(sb, is.is_max))
 			command_cotroller(sa, sb, 2);
-		sort_3_triangle(sb, 3, is.is_max);
+		sort_3_triangle(sb, is.is_max);
 	}
 }
 
