@@ -27,8 +27,11 @@ OBJS 		:=	$(SRCS:%.c=%.o)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(ST_OBJS) $(OBJS)
+$(NAME)	:	$(LIBFT_LIB) $(ST_OBJS) $(OBJS)
 		$(CC) $(CFLAGS) $(ST_OBJS) $(OBJS) $(LIBFT)/$(LIBFT_LIB) -o $(NAME)
+
+$(LIBFT_LIB)	:
+	@make bonus -C $(LIBFT)/
 
 $(ST_OBJS)	:	$(ST_SRCS)
 	$(CC) $(CFLAGS) -c $(ST_SRCS)
@@ -39,9 +42,11 @@ $(OBJS)	:	$(SRCS)
 	@mv *.o src/
 
 clean:
+	@make clean -C $(LIBFT)
 	@rm -f $(OBJS) $(ST_OBJS)
 
 fclean:		clean
+	@make fclean -C $(LIBFT)
 	@rm -f $(NAME)
 
 re:			fclean all
