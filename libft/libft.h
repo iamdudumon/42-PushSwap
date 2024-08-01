@@ -31,8 +31,8 @@ typedef struct s_gnl
 {
 	int				fd;
 	char			*backup;
-	struct s_list	*next;
-	struct s_list	*prev;
+	struct s_gnl	*next;
+	struct s_gnl	*prev;
 }					t_gnl;
 
 int			ft_isalpha(int c);
