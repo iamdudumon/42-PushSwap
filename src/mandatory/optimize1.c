@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 void	drop_triangle_bottom(t_deque *stack, unsigned int size)
 {

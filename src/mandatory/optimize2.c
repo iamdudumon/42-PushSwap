@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 static int	optimize_rotate_cmd(int pre_cmd, int cur_cmd)
 {

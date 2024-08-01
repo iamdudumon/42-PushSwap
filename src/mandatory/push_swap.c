@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 static void	merge_big_triangle(t_deque *s1, t_deque *s2, int size, t_is is)
 {

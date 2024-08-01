@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 void	sort_smail3(t_deque *sa)
 {

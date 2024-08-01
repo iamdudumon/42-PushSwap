@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 void	free_split_str(char **split)
 {

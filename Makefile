@@ -17,9 +17,9 @@ LIBFT		=	libft
 LIBFT_LIB	=	libft.a
 ST_SRCS		=	src/stack/ft_stack_push.c src/stack/ft_stack_reverse.c\
 				src/stack/ft_stack_rotate.c src/stack/ft_stack_swap.c
-SRCS		= 	src/main.c src/optimize1.c src/optimize2.c\
-				src/push_swap.c src/parse_arg.c src/free_handler.c\
-				src/utils1.c src/utils2.c src/utils3.c
+SRCS		= 	src/mandatory/main.c src/mandatory/optimize1.c src/mandatory/optimize2.c\
+				src/mandatory/push_swap.c src/mandatory/parse_arg.c src/mandatory/free_handler.c\
+				src/mandatory/utils1.c src/mandatory/utils2.c src/mandatory/utils3.c
 ST_OBJS		:=	$(ST_SRCS:%.c=%.o)
 OBJS 		:=	$(SRCS:%.c=%.o)
 
@@ -39,7 +39,7 @@ $(ST_OBJS)	:	$(ST_SRCS)
 
 $(OBJS)	:	$(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
-	@mv *.o src/
+	@mv *.o src/mandatory/
 
 clean:
 	@make clean -C $(LIBFT)

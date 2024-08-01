@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ft_push_swap.h"
+#include "../../inc/ft_push_swap.h"
 
 static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, \
 																	t_size ts)
