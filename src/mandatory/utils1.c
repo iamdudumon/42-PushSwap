@@ -15,20 +15,20 @@
 static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, \
 																	t_size ts)
 {
-	int	v1;
-	int	v2;
-	int	v3;
+	long	v1;
+	long	v2;
+	long	v3;
 
 	if (!ts.s1)
-		v1 = -2147483648;
+		v1 = -2147483649;
 	else
 		v1 = *((int *)(node1->content));
 	if (!ts.s2)
-		v2 = -2147483648;
+		v2 = -2147483649;
 	else
 		v2 = *((int *)(node2->content));
 	if (!ts.s3)
-		v3 = -2147483648;
+		v3 = -2147483649;
 	else
 		v3 = *((int *)(node3->content));
 	if (v2 < v1 && v1 > v3)
@@ -41,20 +41,20 @@ static t_list	*get_max_node3(t_list *node1, t_list *node2, t_list *node3, \
 static t_list	*get_min_node3(t_list *node1, t_list *node2, t_list *node3, \
 																	t_size ts)
 {
-	int	v1;
-	int	v2;
-	int	v3;
+	long	v1;
+	long	v2;
+	long	v3;
 
 	if (!ts.s1)
-		v1 = 2147483647;
+		v1 = 2147483648;
 	else
 		v1 = *((int *)(node1->content));
 	if (!ts.s2)
-		v2 = 2147483647;
+		v2 = 2147483648;
 	else
 		v2 = *((int *)(node2->content));
 	if (!ts.s3)
-		v3 = 2147483647;
+		v3 = 2147483648;
 	else
 		v3 = *((int *)(node3->content));
 	if (v2 > v1 && v1 < v3)
