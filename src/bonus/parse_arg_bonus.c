@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arg.c                                        :+:      :+:    :+:   */
+/*   parse_arg_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dukim <dukim@student.42gyeongsan.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:21:43 by dukim             #+#    #+#             */
-/*   Updated: 2024/07/16 13:21:44 by dukim            ###   ########.fr       */
+/*   Updated: 2024/08/06 17:32:24 by dukim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_deque	*init_stack(void)
 	return (stack);
 }
 
-static t_deque	*str_to_stack(t_deque *stack, char **split, int *set)
+static int	str_to_stack(t_deque *stack, char **split, int *set)
 {
 	int		i;
 	int		len;
@@ -71,20 +71,19 @@ static t_deque	*str_to_stack(t_deque *stack, char **split, int *set)
 	len = 0;
 	while (split[len])
 		len++;
+	if (!len)
+		return (0);
 	i = -1;
 	while (++i < len)
 	{
 		node = create_intnode(split[i], set);
 		if (!node)
-		{
-			free_stack(stack, 0);
 			return (0);
-		}
 		ft_lstadd_back(&(stack->header), node);
 		stack->tail = node;
 	}
 	stack->len += len;
-	return (stack);
+	return (1);
 }
 
 t_deque	*generate_stack(int argc, char *argv[])
@@ -98,15 +97,17 @@ t_deque	*generate_stack(int argc, char *argv[])
 	stack = init_stack();
 	if (!set || !stack)
 		return (0);
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
 		split = ft_split(argv[i], ' ');
-		stack = str_to_stack(stack, split, set);
+		if (!str_to_stack(stack, split, set))
+		{
+			free_stack(stack, 0);
+			free(set);
+			return (0);
+		}
 		free_split_str(split);
-		if (!stack)
-			break ;
-		i++;
 	}
 	free(set);
 	return (stack);

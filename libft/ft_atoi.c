@@ -12,13 +12,6 @@
 
 #include "libft.h"
 
-static int	is_sign_ch(char ch)
-{
-	if (ch == '+' || ch == '-')
-		return (1);
-	return (0);
-}
-
 int	ft_atoi(const char *nptr, char *error)
 {
 	long	sum;
@@ -26,15 +19,20 @@ int	ft_atoi(const char *nptr, char *error)
 
 	sum = 0;
 	minus_cnt = 0;
-	if (is_sign_ch(*nptr))
+	if (*nptr == '-')
 	{
 		minus_cnt++;
 		nptr++;
 	}
+	if (*nptr == '+')
+		nptr++;
 	while (*nptr != '\0')
 	{
-		if (!ft_isdigit(*nptr))
+		if (!ft_isdigit(*nptr) || (*nptr == ' ' && sum))
+		{
 			*error = 1;
+			return (0);
+		}
 		sum = sum * 10 + (*nptr - '0');
 		if (sum > 2147483647 || sum < -2147483648)
 			*error = 1;
