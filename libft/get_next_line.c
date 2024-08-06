@@ -50,8 +50,7 @@ static char	*ft_gnl_split_buffer(char *buf, char **backup)
 		return (0);
 	}
 	buf = ft_gnl_strjoin("", res, '\n');
-	*backup = ft_gnl_strjoin(ft_gnl_get_chridx(res, '\n') + 1, 
-																										"", '\0');
+	*backup = ft_gnl_strjoin(ft_gnl_get_chridx(res, '\n') + 1, "", '\0');
 	free(res);
 	return (buf);
 }
