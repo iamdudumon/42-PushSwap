@@ -31,3 +31,9 @@ void	reverse_rotate(t_deque *stack)
 	}
 	stack->header->content = temp1;
 }
+
+void	twin_reverse_rotate(t_deque *sa, t_deque *sb)
+{
+	reverse_rotate(sa);
+	reverse_rotate(sb);
+}

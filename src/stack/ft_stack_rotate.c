@@ -33,3 +33,9 @@ void	rotate(t_deque *stack)
 	}
 	last->content = temp1;
 }
+
+void	twin_rotate(t_deque *sa, t_deque *sb)
+{
+	rotate(sa);
+	rotate(sb);
+}

@@ -40,9 +40,12 @@ typedef struct s_size
 }					t_size;
 
 void	swap(t_deque *stack);
+void	twin_swap(t_deque *sa, t_deque *sb);
 void	push(t_deque *to, t_deque *from);
 void	rotate(t_deque *stack);
+void	twin_rotate(t_deque *sa, t_deque *sb);
 void	reverse_rotate(t_deque *stack);
+void	twin_reverse_rotate(t_deque *sa, t_deque *sb);
 
 void	free_split_str(char **split);
 void	free_stack(t_deque *sa, t_deque *sb);

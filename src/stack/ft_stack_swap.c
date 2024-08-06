@@ -22,3 +22,9 @@ void	swap(t_deque *stack)
 	stack->header->content = stack->header->next->content;
 	stack->header->next->content = temp;
 }
+
+void	twin_swap(t_deque *sa, t_deque *sb)
+{
+	swap(sa);
+	swap(sb);
+}
