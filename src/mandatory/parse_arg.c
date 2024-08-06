@@ -15,7 +15,7 @@
 static int	is_dup_instack(t_deque *stack, int integer)
 {
 	t_list	*ptr;
-	
+
 	ptr = stack->header;
 	while (ptr)
 	{
