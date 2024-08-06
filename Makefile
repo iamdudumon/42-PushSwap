@@ -21,25 +21,25 @@ ST_SRCS		=	src/stack/ft_stack_push.c src/stack/ft_stack_reverse.c\
 SRCS		= 	src/mandatory/main.c src/mandatory/optimize1.c src/mandatory/optimize2.c\
 				src/mandatory/push_swap.c src/mandatory/parse_arg.c src/mandatory/free_handler.c\
 				src/mandatory/utils1.c src/mandatory/utils2.c src/mandatory/utils3.c
-BN_SRCS		= src/bonus/main_bonus.c src/bonus/checker_bonus.c\
-						src/bonus/free_handler_bonus.c src/bonus/parse_arg_bonus.c
+BN_SRCS		=	src/bonus/main_bonus.c src/bonus/checker_bonus.c\
+				src/bonus/free_handler_bonus.c src/bonus/parse_arg_bonus.c
 ST_OBJS		:=	$(ST_SRCS:%.c=%.o)
 OBJS 		:=	$(SRCS:%.c=%.o)
 BN_OBJS		:=	$(BN_SRCS:%.c=%.o)
 
 ifdef BONUS
-	FINAL_OBJS	= $(ST_OBJS) $(BN_OBJS)
-	NAME				= checker
+	FINAL_OBJS	=	$(ST_OBJS) $(BN_OBJS)
+	NAME		=	checker
 else
-	FINAL_OBJS	= $(ST_OBJS) $(OBJS)
-	NAME				=	push_swap
+	FINAL_OBJS	=	$(ST_OBJS) $(OBJS)
+	NAME		=	push_swap
 endif
 
 .PHONY:		all bonus clean fclean re
 
-all		:	$(NAME)
+all		:	$(LIBFT_LIB) $(NAME)
 
-$(NAME)	:	$(LIBFT_LIB) $(FINAL_OBJS)
+$(NAME)	:	$(FINAL_OBJS)
 		$(CC) $(CFLAGS) $(FINAL_OBJS) $(LIBFT)/$(LIBFT_LIB) -o $(NAME)
 
 $(LIBFT_LIB)	:
