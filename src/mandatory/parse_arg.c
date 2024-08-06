@@ -12,24 +12,21 @@
 
 #include "../../inc/ft_push_swap.h"
 
-static int	is_dup_inset(int *set, int integer)
+static int	is_dup_instack(t_deque *stack, int integer)
 {
-	static int	size;
-	int			i;
-
-	i = 0;
-	while (i < size)
+	t_list	*ptr;
+	
+	ptr = stack->header;
+	while (ptr)
 	{
-		if (set[i] == integer)
+		if (*(int *)ptr->content == integer)
 			return (1);
-		i++;
+		ptr = ptr->next;
 	}
-	set[i] = integer;
-	size++;
 	return (0);
 }
 
-static t_list	*create_intnode(char *s, int *set)
+static t_list	*create_intnode(t_deque *stack, char *s)
 {
 	t_list		*node;
 	int			*integer;
@@ -40,7 +37,7 @@ static t_list	*create_intnode(char *s, int *set)
 		return (0);
 	error = 0;
 	*integer = ft_atoi(s, &error);
-	if (error || is_dup_inset(set, *integer))
+	if (error || is_dup_instack(stack, *integer))
 	{
 		free(integer);
 		return (0);
@@ -62,7 +59,7 @@ static t_deque	*init_stack(void)
 	return (stack);
 }
 
-static int	str_to_stack(t_deque *stack, char **split, int *set)
+static int	str_to_stack(t_deque *stack, char **split)
 {
 	int		i;
 	int		len;
@@ -76,7 +73,7 @@ static int	str_to_stack(t_deque *stack, char **split, int *set)
 	i = -1;
 	while (++i < len)
 	{
-		node = create_intnode(split[i], set);
+		node = create_intnode(stack, split[i]);
 		if (!node)
 			return (0);
 		ft_lstadd_back(&(stack->header), node);
@@ -90,25 +87,22 @@ t_deque	*generate_stack(int argc, char *argv[])
 {
 	t_deque	*stack;
 	char	**split;
-	int		*set;
 	int		i;
 
-	set = (int *)malloc(sizeof(int) * 1000);
 	stack = init_stack();
-	if (!set || !stack)
+	if (!stack)
 		return (0);
 	i = 0;
 	while (++i < argc)
 	{
 		split = ft_split(argv[i], ' ');
-		if (!str_to_stack(stack, split, set))
+		if (!str_to_stack(stack, split))
 		{
 			free_stack(stack, 0);
-			free(set);
+			free_split_str(split);
 			return (0);
 		}
 		free_split_str(split);
 	}
-	free(set);
 	return (stack);
 }
