@@ -19,23 +19,21 @@ int	ft_atoi(const char *nptr, char *error)
 
 	sum = 0;
 	minus_cnt = 0;
-	if (*nptr == '-')
+	if (*nptr == '-' || *nptr == '+')
 	{
-		minus_cnt++;
+		if (*nptr == '-')
+			minus_cnt++;
 		nptr++;
 	}
-	if (*nptr == '+')
-		nptr++;
 	while (*nptr != '\0')
 	{
-		if (!ft_isdigit(*nptr) || (*nptr == ' ' && sum))
+		sum = sum * 10 + (*nptr - '0');
+		if (!ft_isdigit(*nptr) || (*nptr == ' ' && sum) || \
+					sum > 2147483647 || sum < -2147483648)
 		{
 			*error = 1;
 			return (0);
 		}
-		sum = sum * 10 + (*nptr - '0');
-		if (sum > 2147483647 || sum < -2147483648)
-			*error = 1;
 		nptr++;
 	}
 	if (minus_cnt)
