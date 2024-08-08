@@ -63,7 +63,7 @@ void	check_sorted(t_deque *sa, t_deque *sb)
 
 	while (1)
 	{
-		cmd = get_next_line(1);
+		cmd = get_next_line(0);
 		if (!cmd)
 			break ;
 		if (!exec_command(sa, sb, cmd))
